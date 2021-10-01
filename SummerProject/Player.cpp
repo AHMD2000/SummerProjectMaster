@@ -1158,7 +1158,7 @@ void Player::Attack(Game& g)
 				(*ite)->NockBackMode(g);
 
 				// SEçƒê∂
-				PlaySoundMem(g._se["CoinLost"], DX_PLAYTYPE_BACK);
+				PlaySoundMem(g._se["TwoNockBack"], DX_PLAYTYPE_BACK);
 
 			}
 

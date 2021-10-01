@@ -147,16 +147,16 @@ bool ModeTitle::Draw(Game& g)
 	switch (NowSelectTitle) // 選択状態によって処理を分岐
 	{
 	case Title_Gamestart: // スタート選択中なら
-		_wakuY = 660;   // スタートの座標を格納
+		_wakuY = 730;   // スタートの座標を格納
 		break;
 	case Title_Rule: // 説明選択中なら
-		_wakuY = 780;   // 説明の座標を格納
+		_wakuY = 810;   // 説明の座標を格納
 		break;
 	case Title_Credit: // クレジット選択中なら
-		_wakuY = 900;   // クレジットの座標を格納
+		_wakuY = 890;   // クレジットの座標を格納
 		break;
 	}
-	DrawGraph(100, _wakuY, _cgwaku, TRUE);
+	DrawGraph(165, _wakuY, _cgwaku, TRUE);
 
 	return true;
 }
