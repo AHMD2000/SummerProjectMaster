@@ -150,3 +150,14 @@ private:
 
     Player* _ply;
 };
+
+
+// 突撃エフェクト
+class RushEffect : public Effect
+{
+public:
+    RushEffect(const Vector2& pos, int startTime);
+    virtual void Easing(int elapsed) override;
+private:
+    Vector2 _start, _stop;
+};

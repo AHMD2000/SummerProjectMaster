@@ -557,7 +557,7 @@ void Player::Idle(Game& g)
 			if (_specialAttack == true)
 			{
 				// SEçƒê∂
-				PlaySoundMem(g._se["SpecialAttackLost"], DX_PLAYTYPE_BACK);
+				PlaySoundMem(g._se["SpecialAttackStart"], DX_PLAYTYPE_BACK);
 			}
 
 			else
@@ -708,7 +708,7 @@ void Player::Move(Game& g)
 			if (_specialAttack == true)
 			{
 				// SEçƒê∂
-				PlaySoundMem(g._se["SpecialAttackLost"], DX_PLAYTYPE_BACK);
+				PlaySoundMem(g._se["SpecialAttackStart"], DX_PLAYTYPE_BACK);
 			}
 
 			else

@@ -109,8 +109,11 @@ Game::Game()
 	_se["TitleEnter"] = ResourceServer::LoadSoundMem("res/se/title_enter.wav");
 	_se["SpecialAttack"] = ResourceServer::LoadSoundMem("res/se/SpecialAttack.mp3");
 	_se["SpecialAttackLost"] = ResourceServer::LoadSoundMem("res/se/SpecialAttack.mp3");
-	_se["StarAttackDebuf"] = ResourceServer::LoadSoundMem("res/se/SpecialAttack.mp3");
-	_se["StarAttackBanana"] = ResourceServer::LoadSoundMem("res/se/SpecialAttack.mp3");
+	_se["StarAttackDebuf"] = ResourceServer::LoadSoundMem("res/se/StarInvalid.mp3");
+	_se["StarAttackBanana"] = ResourceServer::LoadSoundMem("res/se/StarInvalid.mp3");
+	_se["SpecialAttackStart"] = ResourceServer::LoadSoundMem("res/se/SpecialAttackStart.mp3");
+	_se["TwoNockBack"] = ResourceServer::LoadSoundMem("res/se/TwoNockBack.mp3");
+	_se["StarToStar"] = ResourceServer::LoadSoundMem("res/se/StarNockBack.mp3");
 
 	_gFrameCount = 0;
 

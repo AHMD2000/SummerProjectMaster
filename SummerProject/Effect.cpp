@@ -335,3 +335,16 @@ void FlarkEffect::Update(int freamCount, Game& g)
 		_active = false;
 	}*/
 }
+
+
+//突撃エフェクト
+RushEffect::RushEffect(const Vector2& pos, int startTime)
+	:Effect{ pos, startTime, "smoke" }
+{
+
+}
+
+void RushEffect::Easing(int elapsed)
+{
+
+}
