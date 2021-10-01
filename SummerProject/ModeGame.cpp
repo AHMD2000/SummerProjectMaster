@@ -38,6 +38,11 @@ bool ModeGame::Initialize(Game& g) {
 
 	_circleHandle = ResourceServer::GetHandles("UI_circle");
 
+	_grAllCountDownHandles.emplace_back(ResourceServer::GetHandles("CountDown1"));
+	_grAllCountDownHandles.emplace_back(ResourceServer::GetHandles("CountDown2"));
+	_grAllCountDownHandles.emplace_back(ResourceServer::GetHandles("CountDown3"));
+	_grAllCountDownHandles.emplace_back(ResourceServer::GetHandles("CountDownStart"));
+
 	_isAddCoin = true;
 	/*_isAddDebuf = true;*/
 	
@@ -274,42 +279,45 @@ bool ModeGame::Draw(Game& g) {
 			effect->Draw(g);
 		}
 
-
-		// ï`âÊÇ∑ÇÈï∂éöóÒÇÃÉTÉCÉYÇê›íË
-		SetFontSize(64);
-
-		if (_countDownCnt / 60 > 0)
+		
+		if (_countDownCnt / 60 == 3)
 		{
-			DrawFormatString(SCREEN_W / 2, SCREEN_H / 2, GetColor(255, 0, 0), "%d", _countDownCnt / 60);
-
-			if (_countDownCnt == 239)
-			{
-				// SEçƒê∂
-				PlaySoundMem(g._se["CountDown"], DX_PLAYTYPE_BACK);
-			}
-			else if (_countDownCnt == 179)
-			{
-				// SEçƒê∂
-				PlaySoundMem(g._se["CountDown"], DX_PLAYTYPE_BACK);
-			}
-			else if (_countDownCnt == 119)
-			{
-				// SEçƒê∂
-				PlaySoundMem(g._se["CountDown"], DX_PLAYTYPE_BACK);
-			}
+			DrawRotaGraph(SCREEN_W / 2, SCREEN_H / 2, 1.0, 0.0, _grAllCountDownHandles[2], TRUE, FALSE);
+		}
+		else if (_countDownCnt / 60 == 2)
+		{
+			DrawRotaGraph(SCREEN_W / 2, SCREEN_H / 2, 1.0, 0.0, _grAllCountDownHandles[1], TRUE, FALSE);
+		}
+		else if (_countDownCnt / 60 == 1)
+		{
+			DrawRotaGraph(SCREEN_W / 2, SCREEN_H / 2, 1.0, 0.0, _grAllCountDownHandles[0], TRUE, FALSE);
+		}
+		else if (_countDownCnt / 60 <= 0)
+		{
+			DrawRotaGraph(SCREEN_W / 2, SCREEN_H / 2, 1.0, 0.0, _grAllCountDownHandles[3], TRUE, FALSE);
 		}
 
-		if (_countDownCnt / 60 <= 0)
+		if (_countDownCnt == 239)
 		{
-			DrawString(SCREEN_W / 2, SCREEN_H / 2, "Start!", GetColor(255, 0, 0));
-			if (_countDownCnt == 59)
-			{
-				// SEçƒê∂
-				PlaySoundMem(g._se["CountDown"], DX_PLAYTYPE_BACK);
-			}	
+			// SEçƒê∂
+			PlaySoundMem(g._se["CountDown"], DX_PLAYTYPE_BACK);
+		}
+		else if (_countDownCnt == 179)
+		{
+			// SEçƒê∂
+			PlaySoundMem(g._se["CountDown"], DX_PLAYTYPE_BACK);
+		}
+		else if (_countDownCnt == 119)
+		{
+			// SEçƒê∂
+			PlaySoundMem(g._se["CountDown"], DX_PLAYTYPE_BACK);
 		}
 
-		SetFontSize(20);
+		else if (_countDownCnt == 59)
+		{
+			// SEçƒê∂
+			PlaySoundMem(g._se["CountDown"], DX_PLAYTYPE_BACK);
+		}
 		
 	}
 

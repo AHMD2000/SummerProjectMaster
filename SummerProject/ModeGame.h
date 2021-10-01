@@ -112,6 +112,8 @@ private:
 	// 背景
 	BackGround	_bg;
 
+	std::vector<int> _grAllCountDownHandles;// すべてのカウントダウンのグラフィックハンドル
+
 	// マップチップ
 	MapChips	_mapChips;
 

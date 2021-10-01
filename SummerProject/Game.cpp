@@ -78,6 +78,10 @@ const ResourceServer::DivGraphMap usedInGame{
   {"ItemGetEffect",   {"res/item_get_effect.png",  5, 2, 96, 96}},
   {"Crown",   {"res/crown.png",  4, 1, 80, 80}},
   {"ResultCoin",   {"res/resultCoin.png",  6, 1, 160, 90}},
+  {"CountDown1",   {"res/countDown1.png",  1, 1, 515, 106}},
+  {"CountDown2",   {"res/countDown2.png",  1, 1, 514, 106}},
+  {"CountDown3",   {"res/countDown3.png",  1, 1, 515, 106}},
+  {"CountDownStart",   {"res/countDownGameStart.png",  1, 1, 515, 106}},
 };
 
 // ÉAÉvÉäÇÃèâä˙âª
