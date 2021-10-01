@@ -41,13 +41,16 @@ void Coin::Init()
 	_x = rand() % _modeGame._newMapChips->MAPSIZE_W;
 	_y = rand() % _modeGame._newMapChips->MAPSIZE_H;
 
+	_x *= _modeGame._newMapChips->CHIPSIZE_W;
+	_y *= _modeGame._newMapChips->CHIPSIZE_H;
+
 	/*_x = rand() % _mapchip.MAPSIZE_W;
 	_y = rand() % _mapchip.MAPSIZE_H;*/
 
-	_hit_x = 55;
-	_hit_y = 50;
+	_hit_x = -25;
+	_hit_y = -80;
 	_hit_w = 50;
-	_hit_h = 60;
+	_hit_h = 80;
 
 	/*while (_mapchip.CheckHit(_x, _y) != 0)
 	{
@@ -58,23 +61,24 @@ void Coin::Init()
 	_x *= _mapchip.CHIPSIZE_W;
 	_y *= _mapchip.CHIPSIZE_H;*/
 
-	_x *= _modeGame._newMapChips->CHIPSIZE_W;
-	_y *= _modeGame._newMapChips->CHIPSIZE_H;
 
-	while (_modeGame._newMapChips->IsHit(*this, _x, _y) != 0)
+	while (_modeGame._newMapChips->/*CheckHit(_x, _y)*/IsHit(*this, _x, _y)  != 0)
 	{
 		_x = rand() % _modeGame._newMapChips->MAPSIZE_W;
 		_y = rand() % _modeGame._newMapChips->MAPSIZE_H;
 
-		_hit_x = 55;
-		_hit_y = 50;
-		_hit_w = 50;
-		_hit_h = 60;
-
 		_x *= _modeGame._newMapChips->CHIPSIZE_W;
 		_y *= _modeGame._newMapChips->CHIPSIZE_H;
 
+		_hit_x = -25;
+		_hit_y = -80;
+		_hit_w = 50;
+		_hit_h = 80;
+
 	}
+
+	/*_x *= _modeGame._newMapChips->CHIPSIZE_W;
+	_y *= _modeGame._newMapChips->CHIPSIZE_H;*/
 
 	_animeNo = 0;
 	_animeMax = 6;
@@ -90,7 +94,7 @@ void Coin::Process(Game& g)
 	auto modeGame =
 		dynamic_cast<ModeGame*>(g._serverMode->Get("Game"));
 
-	Vector2 _StarCoinGetEffectPos{ static_cast<double>(_x) + static_cast<double>(_w / 2), static_cast<double>(_y) + static_cast<double>(_h / 2) };
+	Vector2 _StarCoinGetEffectPos{ static_cast<double>(_x)/* + static_cast<double>(_w / 2)*/, static_cast<double>(_y) - 40/*+ static_cast<double>(_h / 2) */};
 
 	ObjectBase::Process(g);
 
@@ -117,8 +121,8 @@ void Coin::Process(Game& g)
 		_w = 50;
 		_h = 50;
 
-		_hit_x = 13;
-		_hit_y = 13;
+		_hit_x = -12;
+		_hit_y = -30;
 		_hit_w = 24;
 		_hit_h = 30;
 
@@ -454,12 +458,27 @@ void Coin::Process(Game& g)
 
 void Coin::Draw(Game& g)
 {
-	auto	sx = _x + _w / 2;
-	auto	sy = _y + _h / 2;
+	if (GetCoinType() == Coin::COINTYPE::FILDCOIN)
+	{
+		auto	sx = _x;
+		auto	sy = _y - 40;
 
-	DrawRotaGraph(sx, sy, 1.0, 0.0, _grHandle, TRUE, FALSE);
+		DrawRotaGraph(sx, sy, 1.0, 0.0, _grHandle, TRUE, FALSE);
 
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
-	DrawBox(_x + _hit_x, _y + _hit_y, _x + _hit_x + _hit_w, _y + _hit_y + _hit_h, GetColor(255, 0, 0), TRUE);	// îºìßñæÇÃê‘Ç≈ìñÇΩÇËîªíËï`âÊ
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);		// ïsìßñæï`âÊéwíË
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
+		DrawBox(_x + _hit_x, _y + _hit_y, _x + _hit_x + _hit_w, _y + _hit_y + _hit_h, GetColor(255, 0, 0), TRUE);	// îºìßñæÇÃê‘Ç≈ìñÇΩÇËîªíËï`âÊ
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);		// ïsìßñæï`âÊéwíË
+	}
+	else
+	{
+		auto	sx = _x;
+		auto	sy = _y - 15;
+
+		DrawRotaGraph(sx, sy, 1.0, 0.0, _grHandle, TRUE, FALSE);
+
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
+		DrawBox(_x + _hit_x, _y + _hit_y, _x + _hit_x + _hit_w, _y + _hit_y + _hit_h, GetColor(255, 0, 0), TRUE);	// îºìßñæÇÃê‘Ç≈ìñÇΩÇËîªíËï`âÊ
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);		// ïsìßñæï`âÊéwíË
+	}
+	
 }

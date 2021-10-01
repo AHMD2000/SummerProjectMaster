@@ -74,13 +74,6 @@ void	ObjectServer::Process(Game& g)
 	// Addリストにあるオブジェクトをリストに登録する
 	AddListObjects();
 
-	// Process()の呼び出し
-	for (auto ite = _vObject.begin(); ite != _vObject.end(); ite++)
-	{
-		(*ite)->Process(g);
-
-		(*ite)->Update(_effectCnt, g);
-	}
 
 	// yによるソート
 	std::sort(
@@ -88,6 +81,26 @@ void	ObjectServer::Process(Game& g)
 		_vObject.end(),
 		[](const ObjectBase* ch1, const ObjectBase* ch2) {return ch1->_y < ch2->_y; }
 	);
+
+	// Process()の呼び出し
+	for (auto ite = _vObject.begin(); ite != _vObject.end(); ite++)
+	{
+		(*ite)->Process(g);
+
+		(*ite)->Update(_effectCnt, g);
+
+		//コインを一番最初に配置
+		/*if ((*ite)->GetType() == ObjectBase::OBJECTTYPE::COIN)
+		{
+			_vObject.insert(_vObject.begin(), (*ite));
+			_vObject.erase((ite));
+		}*/
+
+		//ノックバック中の時期キャラを一番最後に配置
+
+	}
+
+
 
 	// Delリストにあるオブジェクトをリストから削除する
 	DelListObjects();

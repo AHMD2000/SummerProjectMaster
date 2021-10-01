@@ -24,6 +24,8 @@ bool ModeUI::Initialize(Game& g)
 
 	_BGMPerformance = false;
 
+	_GameMusicPerformance = false;
+
 
 	return false;
 }
@@ -103,9 +105,11 @@ bool ModeUI::Process(Game& g)
 
 			//_finalBGM = false;
 			_finalBGM = true;
+
+			_GameMusicPerformance = false;
 		}
 
-		else if (_plyRankingUI.at(0).first <= 35 && _plyRankingUI.at(1).first <= 35 && _plyRankingUI.at(2).first <= 35 && _plyRankingUI.at(3).first <= 35/* && _GameMusic == false*/&& _GameMusicPerformance == true || _BGMPerformance == true)
+		else if (_plyRankingUI.at(0).first <= 35 && _plyRankingUI.at(1).first <= 35 && _plyRankingUI.at(2).first <= 35 && _plyRankingUI.at(3).first <= 35/* && _GameMusic == false*/&& _GameMusicPerformance == false)
 		{
 			//// BGMçƒê∂èIóπ
 			//StopMusic();
@@ -113,6 +117,7 @@ bool ModeUI::Process(Game& g)
 			//modeGame->_bgm = PlayMusic("res/bgm/gameMusic.mp3", DX_PLAYTYPE_LOOP);
 
 			_GameMusic = true;
+			_BGMPerformance = false;
 			/*_finalBGM = false;*/
 		}
 
@@ -123,10 +128,12 @@ bool ModeUI::Process(Game& g)
 
 			modeGame->_bgm = PlayMusic("res/bgm/GameFinal.mp3", DX_PLAYTYPE_LOOP);
 
+			_finalBGM = false;
+
 			_BGMPerformance = true;
 		}
 
-		if (/*_finalBGM == false &&*/ _GameMusic == true)
+		if (_GameMusicPerformance == false && _GameMusic == true)
 		{
 			// BGMçƒê∂èIóπ
 			StopMusic();
@@ -135,7 +142,7 @@ bool ModeUI::Process(Game& g)
 
 			_GameMusic = false;
 
-			_GameMusicPerformance = false;
+			_GameMusicPerformance = true;
 		}
 
 	}

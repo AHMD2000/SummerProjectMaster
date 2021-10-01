@@ -279,7 +279,7 @@ bool ModeGame::Draw(Game& g) {
 
 		g._objServer.Draw(g);// オブジェクトの描画
 
-		/*_newMapChips->Draw();*/
+		_newMapChips->Draw();
 
 		_crown->Draw(g);
 
@@ -347,7 +347,7 @@ bool ModeGame::Draw(Game& g) {
 
 		g._objServer.Draw(g);// オブジェクトの描画
 
-		/*_newMapChips->Draw();*/
+		_newMapChips->Draw();
 
 		_crown->Draw(g);
 		
