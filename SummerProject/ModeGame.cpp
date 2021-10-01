@@ -15,11 +15,20 @@
 #include <sstream>
 #include <memory>
 #include <algorithm>
+#include "Vector.h"
 
 namespace COINAPPEARANCE
 {
 	constexpr auto COINWAITTIME = 60 * 8;
 
+}
+
+namespace PlayerPos
+{
+	Vector2 PLAYER1 = { 60.0 + 50.0 ,60.0 * 2 + 50.0 };
+	Vector2 PLAYER2 = { SCREEN_W - 60 - 50 , 60 * 2 + 50 };
+	Vector2 PLAYER3 = { 60 + 50 , 60 * 14 - 1 };
+	Vector2 PLAYER4 = { SCREEN_W - 60 - 50 ,  60 * 14 - 1 };
 }
 
 bool ModeGame::Initialize(Game& g) {
@@ -89,20 +98,20 @@ bool ModeGame::Initialize(Game& g) {
 
 	// プレイヤーを生成し、オブジェクトサーバに登録する
 	auto ply1 = new Player(ObjectBase::OBJECTTYPE::PLAYER1, g);
-	ply1->SetPosition(60 + 50,60 * 2 + 50);
+	ply1->SetPosition(PlayerPos::PLAYER1.x,PlayerPos::PLAYER1.y);
 	g._objServer.Add(ply1);
 
 
 	auto ply2 = new Player(ObjectBase::OBJECTTYPE::PLAYER2, g);
-	ply2->SetPosition(SCREEN_W - 60 - 50,60 * 2 + 50);
+	ply2->SetPosition(PlayerPos::PLAYER2.x, PlayerPos::PLAYER2.y);
 	g._objServer.Add(ply2);
 
 	auto ply3 = new Player(ObjectBase::OBJECTTYPE::PLAYER3, g);
-	ply3->SetPosition(60 + 50, 60 * 14 - 1);
+	ply3->SetPosition(PlayerPos::PLAYER3.x, PlayerPos::PLAYER3.y);
 	g._objServer.Add(ply3);
 
 	auto ply4 = new Player(ObjectBase::OBJECTTYPE::PLAYER4, g);
-	ply4->SetPosition(SCREEN_W - 60 - 50, 60 * 14 - 1);
+	ply4->SetPosition(PlayerPos::PLAYER4.x, PlayerPos::PLAYER4.y);
 	g._objServer.Add(ply4);
 
 	/*auto crown = new Crown(ObjectBase::OBJECTTYPE::CROWN);
