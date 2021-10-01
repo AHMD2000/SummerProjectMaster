@@ -26,9 +26,9 @@ namespace COINAPPEARANCE
 namespace PlayerPos
 {
 	Vector2 PLAYER1 = { 60.0 + 50.0 ,60.0 * 2 + 50.0 };
-	Vector2 PLAYER2 = { SCREEN_W - 60 - 50 , 60 * 2 + 50 };
-	Vector2 PLAYER3 = { 60 + 50 , 60 * 14 - 1 };
-	Vector2 PLAYER4 = { SCREEN_W - 60 - 50 ,  60 * 14 - 1 };
+	Vector2 PLAYER2 = { SCREEN_W - 60.0 - 50.0 , 60.0 * 2 + 50.0 };
+	Vector2 PLAYER3 = { 60.0 + 50.0 , 60.0 * 14.0 - 1.0 };
+	Vector2 PLAYER4 = { SCREEN_W - 60.0 - 50.0 ,  60.0 * 14.0 - 1.0 };
 }
 
 bool ModeGame::Initialize(Game& g) {
