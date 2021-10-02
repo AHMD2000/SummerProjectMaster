@@ -2,7 +2,6 @@
 
 #include	"ObjectBase.h"
 //#include	"ModeGame.h"
-#include	"mapchips.h"
 
 constexpr double E = 0.8;//’µ‚Ë•Ô‚èŒW”
 

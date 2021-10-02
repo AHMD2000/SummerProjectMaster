@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Objectbase.h"
-#include "mapchips.h"
 #include "ModeGame.h"
 
 class SpecialMode : public  ObjectBase
@@ -21,7 +20,7 @@ public:
 
 private:
 
-	float _angle;
+	double _angle;
 
 	double _degree;
 

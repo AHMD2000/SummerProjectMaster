@@ -1,6 +1,5 @@
 #include "ModeGame.h"
 #include "Game.h"
-#include "mapchips.h"
 #include "newMapChips.h"
 #include "Plexus.h"
 #include "StageGimmic.h"
@@ -25,21 +24,23 @@ namespace COINAPPEARANCE
 
 namespace PlayerPos
 {
-	Vector2 PLAYER1 = { 60.0 + 50.0 ,60.0 * 2 + 50.0 };
-	Vector2 PLAYER2 = { SCREEN_W - 60.0 - 50.0 , 60.0 * 2 + 50.0 };
-	Vector2 PLAYER3 = { 60.0 + 50.0 , 60.0 * 14.0 - 1.0 };
-	Vector2 PLAYER4 = { SCREEN_W - 60.0 - 50.0 ,  60.0 * 14.0 - 1.0 };
+	Vector2 PLAYER1 = { 730.0 , 280.0 };
+	Vector2 PLAYER2 = { 1390.0 , 480.0 };
+	Vector2 PLAYER3 = { 750.0 , 700.0 };
+	Vector2 PLAYER4 = { 1230.0 ,  780.0 };
 }
 
-bool ModeGame::Initialize(Game& g) {
+bool ModeGame::Initialize(Game& g)
+{
 	if (!base::Initialize(g)) { return false; }
 
-	
+	_circleHandle = 0;
+
 	_countDownCnt = 60 * 4;
 
-	/*_gameCnt = 60 * 90;*/
+	_gameCnt = 60 * 90;
 
-	_gameCnt = 60 * 10;
+	/*_gameCnt = 60 * 10;*/
 
 	/*_gameCnt = 60 * 1;*/
 
@@ -98,20 +99,20 @@ bool ModeGame::Initialize(Game& g) {
 
 	// プレイヤーを生成し、オブジェクトサーバに登録する
 	auto ply1 = new Player(ObjectBase::OBJECTTYPE::PLAYER1, g);
-	ply1->SetPosition(PlayerPos::PLAYER1.x,PlayerPos::PLAYER1.y);
+	ply1->SetPosition(static_cast<int>(PlayerPos::PLAYER1.x), static_cast<int>(PlayerPos::PLAYER1.y));
 	g._objServer.Add(ply1);
 
 
 	auto ply2 = new Player(ObjectBase::OBJECTTYPE::PLAYER2, g);
-	ply2->SetPosition(PlayerPos::PLAYER2.x, PlayerPos::PLAYER2.y);
+	ply2->SetPosition(static_cast<int>(PlayerPos::PLAYER2.x), static_cast<int>(PlayerPos::PLAYER2.y));
 	g._objServer.Add(ply2);
 
 	auto ply3 = new Player(ObjectBase::OBJECTTYPE::PLAYER3, g);
-	ply3->SetPosition(PlayerPos::PLAYER3.x, PlayerPos::PLAYER3.y);
+	ply3->SetPosition(static_cast<int>(PlayerPos::PLAYER3.x), static_cast<int>(PlayerPos::PLAYER3.y));
 	g._objServer.Add(ply3);
 
 	auto ply4 = new Player(ObjectBase::OBJECTTYPE::PLAYER4, g);
-	ply4->SetPosition(PlayerPos::PLAYER4.x, PlayerPos::PLAYER4.y);
+	ply4->SetPosition(static_cast<int>(PlayerPos::PLAYER4.x), static_cast<int>(PlayerPos::PLAYER4.y));
 	g._objServer.Add(ply4);
 
 	/*auto crown = new Crown(ObjectBase::OBJECTTYPE::CROWN);

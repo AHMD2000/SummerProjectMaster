@@ -89,7 +89,7 @@ bool ModeResult::Process(Game& g)
 		g._serverMode->Add(modeTitle, 0, "Title");
 
 		//BGM‰‰‘t’†Ž~
-		StopMusic;
+		StopMusic();
 	}
 
 

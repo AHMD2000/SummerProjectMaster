@@ -51,8 +51,8 @@ void Plexus::Process(Game& g)
 
 void Plexus::Draw(Game& g)
 {
-	auto sx = _x - _w / 2;
-	auto sy = _y - _h;
+	int sx = static_cast<int>(_x) - _w / 2;
+	int sy = static_cast<int>(_y) - _h;
 		
 
 	DrawGraph(sx, sy, _grHandle, TRUE);

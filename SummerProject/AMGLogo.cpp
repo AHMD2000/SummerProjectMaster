@@ -54,7 +54,7 @@ bool AMGLogo::Draw(Game& g)
 	base::Draw(g);
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, _a);
-	DrawGraph(180, 0, _cgAMGlogo, TRUE);
+	DrawGraph(320, 60, _cgAMGlogo, TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	return true;
 }

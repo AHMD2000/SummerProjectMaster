@@ -1,7 +1,6 @@
 #pragma once
 
 #include	"ObjectBase.h"
-#include	"mapchips.h"
 #include	"ModeGame.h"
 
 

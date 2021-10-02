@@ -34,12 +34,12 @@ void ObjectBase::Draw(Game& g)
 	x = _x + _vx - g._mapChips._scrX;
 	y = _y + _vy - g._mapChips._scrY;*/
 
-	DrawGraph(_x, _y,_grHandle, TRUE);
+	DrawGraph(static_cast<int>(_x), static_cast<int>(_y),_grHandle, TRUE);
 	/*DrawGraph(x, y, _grHandle, TRUE);*/
 
 	 /*開発用。当たり判定を表示する*/
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);		// 半透明描画指定
-	DrawBox(_x  + _hit_x, _y  + _hit_y, _x  + _hit_x + _hit_w,_y  + _hit_y + _hit_h, GetColor(255, 0, 0), TRUE);	// 半透明の赤で当たり判定描画
+	DrawBox(static_cast<int>(_x)  + _hit_x, static_cast<int>(_y)  + _hit_y, static_cast<int>(_x)  + _hit_x + _hit_w, static_cast<int>(_y)  + _hit_y + _hit_h, GetColor(255, 0, 0), TRUE);	// 半透明の赤で当たり判定描画
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);		// 不透明描画指定
 	/*std::stringstream ss;
 	ss << "_CoinFrameCount(" << _cnt << ")\n";

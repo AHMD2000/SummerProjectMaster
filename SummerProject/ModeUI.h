@@ -33,7 +33,7 @@ protected:
 
 	int _finalBGMCoin = 40;
 
-	bool _fadeOn;
+	bool _fadeOn = true;
 
 	bool _finalBGM;
 
@@ -41,7 +41,7 @@ protected:
 
 	bool _GameMusicPerformance = true;
 
-	bool _BGMPerformance;
+	bool _BGMPerformance = false;
 
 	std::vector<int> _grAllHandles;
 

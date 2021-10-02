@@ -259,7 +259,7 @@ void Player::Process(Game& g)
 	{
 		_spd = 4.0 * 1.3;
 	}
-	else if(modeGame->_newMapChips->IsHitFlark(*this, _x, _y != 0))
+	else if(modeGame->_newMapChips->IsHitFlark(*this, static_cast<int>(_x), static_cast<int>(_y) != 0))
 	{
 		_spd = 2.0;
 	}
@@ -507,8 +507,8 @@ void Player::Process(Game& g)
 
 	_bananaGage++;
 
-	_xBack = _x;
-	_yBack = _y;
+	_xBack = static_cast<int>(_x);
+	_yBack = static_cast<int>(_y);
 
 	_oldCoin = _coin;
 
@@ -631,7 +631,7 @@ void Player::Move(Game& g)
 		//g._mapChips.IsHit(*this, 0, 1);
 		isMove = true;
 
-		if (modeGame->_newMapChips->IsHitFlark(*this, _x, _y) != 0)
+		if (modeGame->_newMapChips->IsHitFlark(*this, static_cast<int>(_x), static_cast<int>(_y)) != 0)
 		{
 			/*modeGame->AddFlarkEffect(_FlarkEffectPos);*/
 
@@ -645,7 +645,7 @@ void Player::Move(Game& g)
 		//g._mapChips.IsHit(*this, 0, -1);
 		isMove = true;
 
-		if (modeGame->_newMapChips->IsHitFlark(*this, _x, _y) != 0)
+		if (modeGame->_newMapChips->IsHitFlark(*this, static_cast<int>(_x), static_cast<int>(_y)) != 0)
 		{
 			/*modeGame->AddFlarkEffect(_FlarkEffectPos);*/
 			/*_flarkefect->Update(_cnt, g);*/
@@ -663,7 +663,7 @@ void Player::Move(Game& g)
 		//g._mapChips.IsHit(*this, -1, 0);
 		isMove = true;
 
-		if (modeGame->_newMapChips->IsHitFlark(*this, _x, _y != 0))
+		if (modeGame->_newMapChips->IsHitFlark(*this, static_cast<int>(_x), static_cast<int>(_y) != 0))
 		{
 			/*modeGame->AddFlarkEffect(_FlarkEffectPos);*/
 			/*_flarkefect->Update(_cnt, g);*/
@@ -679,7 +679,7 @@ void Player::Move(Game& g)
 		//g._mapChips.IsHit(*this, 1, 0);
 		isMove = true;
 
-		if (modeGame->_newMapChips->IsHitFlark(*this, _x, _y) != 0)
+		if (modeGame->_newMapChips->IsHitFlark(*this, static_cast<int>(_x), static_cast<int>(_y)) != 0)
 		{
 			/*modeGame->AddFlarkEffect(_FlarkEffectPos);*/
 			/*_flarkefect->Update(_cnt, g);*/
@@ -689,7 +689,7 @@ void Player::Move(Game& g)
 		}
 	}
 
-	if (modeGame->_newMapChips->IsHitFlark(*this, _x, _y) == 0)
+	if (modeGame->_newMapChips->IsHitFlark(*this, static_cast<int>(_x), static_cast<int>(_y)) == 0)
 	{
 		_flarkEffect = false;
 	}
@@ -750,15 +750,11 @@ void Player::Move(Game& g)
 	_velocityDir.Normalize();
 	_velocityDir *= _spd;
 
-	_x += static_cast<int>(_velocityDir.x);
+	_x += _velocityDir.x;
 	modeGame->_newMapChips->IsHit(*this, static_cast<int>(_velocityDir.x), 0);
-	_y += static_cast<int>(_velocityDir.y);
+	_y += _velocityDir.y;
 	modeGame->_newMapChips->IsHit(*this, 0, static_cast<int>(_velocityDir.y));
 
-	if (_x < 0) { _x = 0; }
-	if (_x + _w > SCREEN_W) { _x = SCREEN_W - _w; }
-	if (_y < 0) { _y = 0; }
-	if (_y + _h > SCREEN_H) { _y = SCREEN_H - _h; }
 	
 	/*if (key & PAD_INPUT_A) {
 		ChangeState(STATE::ATTACK);
@@ -769,7 +765,6 @@ void Player::Move(Game& g)
 	_animeNo = (cnt / 10) % _animeMax + _charaDir * _charaDirSlide;
 	_grHandle = _grAllHandles[_animeNo];
 }
-
 
 void Player::Draw(Game& g) {
 
@@ -787,8 +782,8 @@ void Player::Draw(Game& g) {
 
 	auto cnt = _cnt - _stateCnt;
 
-	auto sx = _x;
-	auto sy = _y - _h / 2;
+	int sx = static_cast<int>(_x);
+	int sy = static_cast<int>(_y) - _h / 2;
 
 
 	std::stringstream ss;
@@ -849,7 +844,7 @@ void Player::Draw(Game& g) {
 			DrawBox(sx, sy - 10, sx + _w * _bananaGage / _bananaGageMax, sy, GetColor(255, 0, 0), TRUE);
 		}*/
 		
-		DrawString(_x - _w / 2, _y - _h * 2, ss.str().c_str(), GetColor(255, 255, 255));
+		DrawString(static_cast<int>(_x) - _w / 2, static_cast<int>(_y) - _h * 2, ss.str().c_str(), GetColor(255, 255, 255));
 		break;
 	case ObjectBase::OBJECTTYPE::PLAYER2:
 		ss << "_Coin2(" << _coin << ")\n";
@@ -857,28 +852,28 @@ void Player::Draw(Game& g) {
 		
 		/*DrawBox(sx, sy - 10, sx + _w, sy, GetColor(255, 255, 255), FALSE);*/
 		/*DrawBox(sx, sy - 10, sx + _w * _bananaGage / _bananaGageMax, sy, GetColor(0, 255, 0), TRUE);*/
-		DrawString(_x - _w / 2, _y - _h - 30, ss.str().c_str(), GetColor(255, 255, 255));
+		DrawString(static_cast<int>(_x) - _w / 2, static_cast<int>(_y) - _h - 30, ss.str().c_str(), GetColor(255, 255, 255));
 		break;
 	case ObjectBase::OBJECTTYPE::PLAYER3:
 		ss << "_Coin3(" << _coin << ")\n";
 
 		/*DrawBox(sx, sy - 10, sx + _w, sy, GetColor(255, 255, 255), FALSE);*/
 		/*DrawBox(sx, sy - 10, sx + _w * _bananaGage / _bananaGageMax, sy, GetColor(0, 255, 0), TRUE);*/
-		DrawString(_x - _w / 2, _y - _h - 30, ss.str().c_str(), GetColor(255, 255, 255));
+		DrawString(static_cast<int>(_x) - _w / 2, static_cast<int>(_y) - _h - 30, ss.str().c_str(), GetColor(255, 255, 255));
 		break;
 	case ObjectBase::OBJECTTYPE::PLAYER4:
 		ss << "_Coin4(" << _coin << ")\n";
 
 		/*DrawBox(sx, sy - 10, sx + _w, sy, GetColor(255, 255, 255), FALSE);*/
 		/*DrawBox(sx, sy - 10, sx + _w * _bananaGage / _bananaGageMax, sy, GetColor(0, 255, 0), TRUE);*/
-		DrawString(_x - _w / 2, _y - _h - 30, ss.str().c_str(), GetColor(255, 255, 255));
+		DrawString(static_cast<int>(_x) - _w / 2, static_cast<int>(_y) - _h - 30, ss.str().c_str(), GetColor(255, 255, 255));
 		break;
 	}
 
 
 	if (_cooltime <= 0)
 	{
-		DrawRotaGraph(_x + 30, _y, 1.0, 0.0, _grStandbyBanana, TRUE, FALSE);
+		DrawRotaGraph(static_cast<int>(_x) + 30, static_cast<int>(_y), 1.0, 0.0, _grStandbyBanana, TRUE, FALSE);
 	}
 
 	/*DrawGraph(sx, sy, _grHandle, TRUE);*/
@@ -886,7 +881,7 @@ void Player::Draw(Game& g) {
 
 	if (_specialAttack == true)
 	{
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255.0);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 		SetDrawMode(DX_DRAWMODE_BILINEAR);
 
 		_specialAttackEffectAngle += 0.03;
@@ -915,7 +910,7 @@ void Player::Draw(Game& g) {
 	
 	if (_isDebuf == true)
 	{
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 155.0);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 155);
 		SetDrawMode(DX_DRAWMODE_BILINEAR);
 
 		DrawRotaGraph(sx, sy, 2.0, 0.0, _grDebufEffect[cnt % 10], true, false);
@@ -1020,8 +1015,8 @@ void Player::Attack(Game& g)
 			continue;
 		}
 
-		int hitx = _x + _hita_x;
-		int hity = _y + _hita_y;
+		int hitx = static_cast<int>(_x) + _hita_x;
+		int hity = static_cast<int>(_y) + _hita_y;
 
 		/*if (_newMapchip->CheckHit(hitx, hity) != 0)
 		{
@@ -1216,7 +1211,7 @@ void Player::BananaPut(Game& g)
 			if (_charaDir == 1)
 			{
 				auto banana = new Banana(ObjectBase::OBJECTTYPE::BANANA, 1/*,Banana::CHARACTER::kPLAYER1*/);
-				banana->SetPosition(_x, _y - _h + 45);
+				banana->SetPosition(static_cast<int>(_x), static_cast<int>(_y) - _h + 45);
 				banana->_charaDir = 1;
 				g._objServer.Add(banana);
 			}
@@ -1224,7 +1219,7 @@ void Player::BananaPut(Game& g)
 			if (_charaDir == 0)
 			{
 				auto banana = new Banana(ObjectBase::OBJECTTYPE::BANANA, 1/*,Banana::CHARACTER::kPLAYER1*/);
-				banana->SetPosition(_x, _y + banana->GetH() - 20);
+				banana->SetPosition(static_cast<int>(_x), static_cast<int>(_y) + banana->GetH() - 20);
 				banana->_charaDir = 0;
 				g._objServer.Add(banana);
 			}
@@ -1232,7 +1227,7 @@ void Player::BananaPut(Game& g)
 			if (_charaDir == 2)
 			{
 				auto banana = new Banana(ObjectBase::OBJECTTYPE::BANANA, 1/*,Banana::CHARACTER::kPLAYER1*/);
-				banana->SetPosition(_x - _w / 2 - banana->GetH() / 2 + 20, _y);
+				banana->SetPosition(static_cast<int>(_x) - _w / 2 - banana->GetH() / 2 + 20, static_cast<int>(_y));
 				banana->_charaDir = 2;
 				g._objServer.Add(banana);
 			}
@@ -1240,7 +1235,7 @@ void Player::BananaPut(Game& g)
 			if (_charaDir == 3)
 			{
 				auto banana = new Banana(ObjectBase::OBJECTTYPE::BANANA, 1/*,Banana::CHARACTER::kPLAYER1*/);
-				banana->SetPosition(_x + _w / 2 + banana->GetH() / 2 - 24, _y);
+				banana->SetPosition(static_cast<int>(_x) + _w / 2 + banana->GetH() / 2 - 24, static_cast<int>(_y));
 				banana->_charaDir = 3;
 				g._objServer.Add(banana);
 			}
@@ -1252,7 +1247,7 @@ void Player::BananaPut(Game& g)
 			if (_charaDir == 1)
 			{
 				auto banana = new Banana(ObjectBase::OBJECTTYPE::BANANA, 2/*,Banana::CHARACTER::kPLAYER1*/);
-				banana->SetPosition(_x, _y - _h + 45);
+				banana->SetPosition(static_cast<int>(_x), static_cast<int>(_y) - _h + 45);
 				banana->_charaDir = 6;
 				g._objServer.Add(banana);
 			}
@@ -1504,9 +1499,9 @@ void Player::NockBack(Game& g)
 	_nockBackpos *= 5.0;
 
 	_x += _nockBackpos.x;
-	modeGame->_newMapChips->IsHit(*this, _nockBackpos.x, 0);
+	modeGame->_newMapChips->IsHit(*this, static_cast<int>(_nockBackpos.x), 0);
 	_y += _nockBackpos.y;
-	modeGame->_newMapChips->IsHit(*this, 0, _nockBackpos.y);
+	modeGame->_newMapChips->IsHit(*this, 0, static_cast<int>(_nockBackpos.y));
 
 	if (cnt >= 60 * 0.2)
 	{
@@ -1566,10 +1561,10 @@ void Player::Rush(Game& g)
 	_velocityDir.Normalize();
 	_velocityDir *= _spd;
 
-	_x += _velocityDir.x;
-	modeGame->_newMapChips->IsHit(*this, _velocityDir.x, 0);
-	_y += _velocityDir.y;
-	modeGame->_newMapChips->IsHit(*this, 0, _velocityDir.y);
+	_x += static_cast<int>(_velocityDir.x);
+	modeGame->_newMapChips->IsHit(*this, static_cast<int>(_velocityDir.x), 0);
+	_y += static_cast<int>(_velocityDir.y);
+	modeGame->_newMapChips->IsHit(*this, 0, static_cast<int>(_velocityDir.y));
 
 	for (auto ite = g._objServer.List()->begin(); ite != g._objServer.List()->end(); ite++)
 	{

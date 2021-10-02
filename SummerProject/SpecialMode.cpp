@@ -44,7 +44,7 @@ void SpecialMode::Init()
 	/*_x += _w / 2;
 	_y += _h;*/
 
-	while (_modeGame._newMapChips->IsHit(*this, _x, _y) != 0)
+	while (_modeGame._newMapChips->IsHit(*this, static_cast<int>(_x), static_cast<int>(_y)) != 0)
 	{
 		_x = rand() % _modeGame._newMapChips->MAPSIZE_W;
 		_y = rand() % _modeGame._newMapChips->MAPSIZE_H;
@@ -117,8 +117,8 @@ void SpecialMode::Process(Game& g)
 
 void SpecialMode::Draw(Game& g)
 {
-	auto	sx = _x;
-	auto	sy = _y - _h / 2;
+	auto	sx = static_cast<int>(_x);
+	auto	sy = static_cast<int>(_y) - _h / 2;
 
 	DrawRotaGraph(sx, sy, 1.0, _angle, _grHandle, TRUE, FALSE);
 	//SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);

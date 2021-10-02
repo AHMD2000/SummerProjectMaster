@@ -276,10 +276,10 @@ int NewMapChips::IsHit(ObjectBase& o, int mx, int my)
 
 	// キャラ矩形を作成する
 	int l, t, r, b;		// 左上(left,top) - 右下(right,bottom)
-	l = o._x + o._hit_x;
-	t = o._y + o._hit_y;
-	r = o._x + o._hit_x + o._hit_w - 1;
-	b = o._y + o._hit_y + o._hit_h - 1;
+	l = static_cast<int>(o._x) + o._hit_x;
+	t = static_cast<int>(o._y) + o._hit_y;
+	r = static_cast<int>(o._x) + o._hit_x + o._hit_w - 1;
+	b = static_cast<int>(o._y) + o._hit_y + o._hit_h - 1;
 
 	// キャラの左上座標～右下座標にあたるマップチップと、当たり判定を行う
 	for (y = t / CHIPSIZE_H; y <= b / CHIPSIZE_H; y++)
@@ -324,10 +324,10 @@ int NewMapChips::IsHitFlark(ObjectBase& o, int mx, int my)
 
 	// キャラ矩形を作成する
 	int l, t, r, b;		// 左上(left,top) - 右下(right,bottom)
-	l = o._x + o._hit_x;
-	t = o._y + o._hit_y;
-	r = o._x + o._hit_x + o._hit_w - 1;
-	b = o._y + o._hit_y + o._hit_h - 1;
+	l = static_cast<int>(o._x) + o._hit_x;
+	t = static_cast<int>(o._y) + o._hit_y;
+	r = static_cast<int>(o._x) + o._hit_x + o._hit_w - 1;
+	b = static_cast<int>(o._y) + o._hit_y + o._hit_h - 1;
 
 	// キャラの左上座標～右下座標にあたるマップチップと、当たり判定を行う
 	for (y = t / CHIPSIZE_H; y <= b / CHIPSIZE_H; y++)

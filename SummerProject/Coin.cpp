@@ -6,7 +6,6 @@
 #include <chrono>
 #include <thread>
 #include "ModeGame.h"
-#include "mapchips.h"
 
 Coin::Coin(ObjectBase::OBJECTTYPE id, ModeGame& modegame)
 	:_id(id),_modeGame(modegame)
@@ -62,7 +61,7 @@ void Coin::Init()
 	_y *= _mapchip.CHIPSIZE_H;*/
 
 
-	while (_modeGame._newMapChips->/*CheckHit(_x, _y)*/IsHit(*this, _x, _y)  != 0)
+	while (_modeGame._newMapChips->/*CheckHit(_x, _y)*/IsHit(*this, static_cast<int>(_x), static_cast<int>(_y))  != 0)
 	{
 		_x = rand() % _modeGame._newMapChips->MAPSIZE_W;
 		_y = rand() % _modeGame._newMapChips->MAPSIZE_H;
@@ -463,10 +462,10 @@ void Coin::Draw(Game& g)
 		auto	sx = _x;
 		auto	sy = _y - 40;
 
-		DrawRotaGraph(sx, sy, 1.0, 0.0, _grHandle, TRUE, FALSE);
+		DrawRotaGraph(static_cast<int>(sx), static_cast<int>(sy), 1.0, 0.0, _grHandle, TRUE, FALSE);
 
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
-		DrawBox(_x + _hit_x, _y + _hit_y, _x + _hit_x + _hit_w, _y + _hit_y + _hit_h, GetColor(255, 0, 0), TRUE);	// ”¼“§–¾‚ÌÔ‚Å“–‚½‚è”»’è•`‰æ
+		DrawBox(static_cast<int>(_x) + _hit_x, static_cast<int>(_y) + _hit_y, static_cast<int>(_x) + _hit_x + _hit_w, static_cast<int>(_y) + _hit_y + _hit_h, GetColor(255, 0, 0), TRUE);	// ”¼“§–¾‚ÌÔ‚Å“–‚½‚è”»’è•`‰æ
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);		// •s“§–¾•`‰æw’è
 	}
 	else
@@ -474,10 +473,10 @@ void Coin::Draw(Game& g)
 		auto	sx = _x;
 		auto	sy = _y - 15;
 
-		DrawRotaGraph(sx, sy, 1.0, 0.0, _grHandle, TRUE, FALSE);
+		DrawRotaGraph(static_cast<int>(sx), static_cast<int>(sy), 1.0, 0.0, _grHandle, TRUE, FALSE);
 
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
-		DrawBox(_x + _hit_x, _y + _hit_y, _x + _hit_x + _hit_w, _y + _hit_y + _hit_h, GetColor(255, 0, 0), TRUE);	// ”¼“§–¾‚ÌÔ‚Å“–‚½‚è”»’è•`‰æ
+		DrawBox(static_cast<int>(_x) + _hit_x, static_cast<int>(_y) + _hit_y, static_cast<int>(_x) + _hit_x + _hit_w, static_cast<int>(_y) + _hit_y + _hit_h, GetColor(255, 0, 0), TRUE);	// ”¼“§–¾‚ÌÔ‚Å“–‚½‚è”»’è•`‰æ
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);		// •s“§–¾•`‰æw’è
 	}
 	

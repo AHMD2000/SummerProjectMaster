@@ -20,7 +20,7 @@ public:
 	virtual bool Draw(Game& g);
 protected:
 
-	int _a;
-	int _cnt;
-	int _cgAMGlogo;
+	int _a = 0;
+	int _cnt = 0;
+	int _cgAMGlogo = 0;
 };

@@ -66,7 +66,7 @@ public:
 	int _grHandle;  // 現在のグラフィックハンドル
 	int _animeNo;   // アニメ番号
 	int _animeMax;        // アニメ最大数
-	int		_x, _y;		// 座標
+	double		_x, _y;		// 座標
 	int		_w, _h;		// 大きさ
 	double		_spd;		// 移動速度
 	int _grandY;

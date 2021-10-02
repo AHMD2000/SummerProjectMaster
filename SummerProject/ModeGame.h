@@ -5,7 +5,6 @@
 #include	"BackGround.h"
 #include	"Player.h"
 #include    "Coin.h"
-#include    "mapchips.h"
 #include    "newMapchips.h"
 #include	<memory>
 #include	<vector>
@@ -74,7 +73,7 @@ public:
 	bool    _isAddCoin;
 	bool    _isAddDebuf;
 	bool	_stopObjProcess;
-	int _bgm;
+	int _gameBGM = 0;
 
 	std::vector<std::pair<int, ObjectBase::OBJECTTYPE>> _plyRanking;
 	/*std::vector<std::unique_ptr<Player>> _plyRanking;*/

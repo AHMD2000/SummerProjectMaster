@@ -28,11 +28,11 @@ protected:
 
 	/*Player	_ply;*/
 
-	bool _fadeOn;
+	bool _fadeOn = true;
 
-	int		_cgResult;
+	int		_cgResult = 0;
 
-	int _bgm;
+	int _bgm = 0;
 
 	//リザルト画面の王冠のユニークポインタ
 	std::unique_ptr<ResultCrown> _resultCrown;
@@ -43,7 +43,7 @@ protected:
 	// プレイヤーUIのユニークポインタの動的配列
 	std::vector<std::unique_ptr<PlayerUI>> _plyUIs;
 
-	int _resultCnt;
+	int _resultCnt = 0;
 
 
 };

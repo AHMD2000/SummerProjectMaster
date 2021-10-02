@@ -247,8 +247,8 @@ void StarStateEffect::Draw(Game& g)
 {
 	SetDrawBlendMode(_blendMode, static_cast<int>(_alpha));
 	SetDrawMode(DX_DRAWMODE_BILINEAR);
-	int x = _ply->_x;
-	int y = _ply->_y - 50;
+	int x = static_cast<int>(_ply->_x);
+	int y = static_cast<int>(_ply->_y) - 50;
 
 	DrawRotaGraph(x, y, _zoom, _angle, _grHandle, true, false);
 
@@ -309,8 +309,8 @@ void FlarkEffect::Draw(Game& g)
 {
 	SetDrawBlendMode(_blendMode, static_cast<int>(_alpha));
 	SetDrawMode(DX_DRAWMODE_BILINEAR);
-	int x = _ply->_x;
-	int y = _ply->_y - 50;
+	int x = static_cast<int>(_ply->_x);
+	int y = static_cast<int>(_ply->_y) - 50;
 
 	DrawRotaGraph(x, y, _zoom, _angle, _grHandle, true, false);
 

@@ -1,6 +1,5 @@
 #pragma once
 
-#include "mapchips.h"
 #include "ModeServer.h"
 #include "ObjectServer.h"
 #include "ResourceServer.h"

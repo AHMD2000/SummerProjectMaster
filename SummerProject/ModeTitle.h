@@ -5,7 +5,7 @@
 
 
 
-typedef enum
+enum class TITLESTATE
 {
 	Title_Gamestart,  // ゲーム開始
 	Title_Rule,   // ゲーム説明
@@ -34,13 +34,13 @@ protected:
 	bool _TitleProcess = true;
 
 	// タイトル
-	int		_cgTitle;
+	int		_cgTitle = 0;
 
-	int		_waku;
-	int		_cgTitlename;
-	int		_cgGameStart;
-	int		_cgRule;
-	int		_cgwaku;
+	int		_waku = 0;
+	int		_cgTitlename = 0;
+	int		_cgGameStart = 0;
+	int		_cgRule = 0;
+	int		_cgwaku = 0;
 
-	int _bgm;
+	int _bgm = 0;
 };

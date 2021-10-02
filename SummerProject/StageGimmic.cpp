@@ -122,8 +122,8 @@ void StageGimmic::Process(Game& g)
 
 void StageGimmic::Draw(Game& g)
 {
-	auto sx = _x;
-	auto sy = _y - _h / 2;
+	auto sx = static_cast<int>(_x);
+	auto sy = static_cast<int>(_y) - _h / 2;
 
 
 	DrawRotaGraph(sx, sy,1.0, _angle, _grHandle, TRUE, FALSE);

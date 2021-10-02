@@ -23,5 +23,5 @@ protected:
 	int     _cgItemGimmick;
 	int     _cgToTitle;*/
 
-	int		_cgHandle;
+	int		_cgHandle = 0;
 };

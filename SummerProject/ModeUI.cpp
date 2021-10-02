@@ -24,7 +24,7 @@ bool ModeUI::Initialize(Game& g)
 
 	_BGMPerformance = false;
 
-	_GameMusicPerformance = true;
+	_GameMusicPerformance = false;
 
 
 	return false;
@@ -130,7 +130,7 @@ bool ModeUI::Process(Game& g)
 			// BGM再生終了
 			StopMusic();
 
-			modeGame->_bgm = PlayMusic("res/bgm/GameFinal.mp3", DX_PLAYTYPE_LOOP);
+			modeGame->_gameBGM = PlayMusic("res/bgm/GameFinal.mp3", DX_PLAYTYPE_LOOP);
 
 			/*_finalBGM = false;*/
 
@@ -144,7 +144,7 @@ bool ModeUI::Process(Game& g)
 			// BGM再生終了
 			StopMusic();
 
-			modeGame->_bgm = PlayMusic("res/bgm/gameMusic.mp3", DX_PLAYTYPE_LOOP);
+			modeGame->_gameBGM = PlayMusic("res/bgm/gameMusic.mp3", DX_PLAYTYPE_LOOP);
 
 			/*_GameMusic = false;*/
 
@@ -360,11 +360,11 @@ bool ModeUI::Draw(Game& g)
 	//コインのゲージを表示
 	for (auto i = 0; i < 2; ++i)
 	{
-		DrawRectGraph(_gaugeX + i * 420, _gaugeY, 0, 0, 260 * _plyCoinRate[i], 60, _grUIgaugeHandle, TRUE, FALSE);
+		DrawRectGraph(_gaugeX + i * 420, _gaugeY, 0, 0, 260 * static_cast<int>(_plyCoinRate[i]), 60, _grUIgaugeHandle, TRUE, FALSE);
 	}
 
-	DrawRectGraph(_gaugeX + 2 * 420 + 265, _gaugeY, 0, 0, 260 * _plyCoinRate[2], 60, _grUIgaugeHandle, TRUE, FALSE);
-	DrawRectGraph(_gaugeX + 2 * 420 + 265 + 420, _gaugeY, 0, 0, 260 * _plyCoinRate[3], 60, _grUIgaugeHandle, TRUE, FALSE);
+	DrawRectGraph(_gaugeX + 2 * 420 + 265, _gaugeY, 0, 0, 260 * static_cast<int>(_plyCoinRate[2]), 60, _grUIgaugeHandle, TRUE, FALSE);
+	DrawRectGraph(_gaugeX + 2 * 420 + 265 + 420, _gaugeY, 0, 0, 260 * static_cast<int>(_plyCoinRate[3]), 60, _grUIgaugeHandle, TRUE, FALSE);
 	
 	/*DrawGraph(_gaugeX + 0 * 390, _gaugeY, _grUIgaugeHandle, TRUE);*/
 

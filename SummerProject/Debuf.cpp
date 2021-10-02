@@ -35,7 +35,7 @@ void Debuf::Init()
 	_x *= _modeGame._newMapChips->CHIPSIZE_W;
 	_y *= _modeGame._newMapChips->CHIPSIZE_H;
 
-	while (_modeGame._newMapChips->IsHit(*this, _x, _y) != 0)
+	while (_modeGame._newMapChips->IsHit(*this, static_cast<int>(_x), static_cast<int>(_y)) != 0)
 	{
 		_x = rand() % _modeGame._newMapChips->MAPSIZE_W;
 		_y = rand() % _modeGame._newMapChips->MAPSIZE_H;
@@ -119,8 +119,8 @@ void Debuf::Process(Game& g)
 
 void Debuf::Draw(Game& g)
 {
-	auto	sx = _x - _w / 2;
-	auto	sy = _y - _h;
+	int	sx = static_cast<int>(_x) - _w / 2;
+	int	sy = static_cast<int>(_y) - _h;
 
 	SetDrawBright(_bright, _bright, _bright);
 	DrawGraph(sx, sy, _grHandle, TRUE);

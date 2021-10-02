@@ -88,14 +88,14 @@ void Crown::Draw(Game& g)
 	{
 		if (modeUI->_plyRankingUI.at(0).second == ObjectBase::OBJECTTYPE::PLAYER1)
 		{
-			DrawRotaGraph(_ply[0]->_x, _ply[0]->_y - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
+			DrawRotaGraph(static_cast<int>(_ply[0]->_x), static_cast<int>(_ply[0]->_y) - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
 		}
 
 		else if (modeUI->_plyRankingUI.at(1).second == ObjectBase::OBJECTTYPE::PLAYER1)
 		{
 			if (modeUI->_plyRankingUI.at(0).first == modeUI->_plyRankingUI.at(1).first)
 			{
-				DrawRotaGraph(_ply[0]->_x, _ply[0]->_y - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
+				DrawRotaGraph(static_cast<int>(_ply[0]->_x), static_cast<int>(_ply[0]->_y) - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
 			}
 			/*else
 			{
@@ -107,7 +107,7 @@ void Crown::Draw(Game& g)
 		{
 			if (modeUI->_plyRankingUI.at(0).first == modeUI->_plyRankingUI.at(2).first)
 			{
-				DrawRotaGraph(_ply[0]->_x, _ply[0]->_y - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
+				DrawRotaGraph(static_cast<int>(_ply[0]->_x), static_cast<int>(_ply[0]->_y) - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
 			}
 
 		}
@@ -116,21 +116,21 @@ void Crown::Draw(Game& g)
 		{
 			if (modeUI->_plyRankingUI.at(0).first == modeUI->_plyRankingUI.at(3).first)
 			{
-				DrawRotaGraph(_ply[0]->_x, _ply[0]->_y - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
+				DrawRotaGraph(static_cast<int>(_ply[0]->_x), static_cast<int>(_ply[0]->_y) - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
 			}
 
 		}
 
 		if (modeUI->_plyRankingUI.at(0).second == ObjectBase::OBJECTTYPE::PLAYER2)
 		{
-			DrawRotaGraph(_ply[1]->_x, _ply[1]->_y - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
+			DrawRotaGraph(static_cast<int>(_ply[1]->_x), static_cast<int>(_ply[1]->_y) - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
 		}
 
 		else if (modeUI->_plyRankingUI.at(1).second == ObjectBase::OBJECTTYPE::PLAYER2)
 		{
 			if (modeUI->_plyRankingUI.at(0).first == modeUI->_plyRankingUI.at(1).first)
 			{
-				DrawRotaGraph(_ply[1]->_x, _ply[1]->_y - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
+				DrawRotaGraph(static_cast<int>(_ply[1]->_x), static_cast<int>(_ply[1]->_y) - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
 			}
 
 		}
@@ -139,7 +139,7 @@ void Crown::Draw(Game& g)
 		{
 			if (modeUI->_plyRankingUI.at(0).first == modeUI->_plyRankingUI.at(2).first)
 			{
-				DrawRotaGraph(_ply[1]->_x, _ply[1]->_y - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
+				DrawRotaGraph(static_cast<int>(_ply[1]->_x), static_cast<int>(_ply[1]->_y) - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
 			}
 
 		}
@@ -148,21 +148,21 @@ void Crown::Draw(Game& g)
 		{
 			if (modeUI->_plyRankingUI.at(0).first == modeUI->_plyRankingUI.at(3).first)
 			{
-				DrawRotaGraph(_ply[1]->_x, _ply[1]->_y - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
+				DrawRotaGraph(static_cast<int>(_ply[1]->_x), static_cast<int>(_ply[1]->_y) - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
 			}
 
 		}
 
 		if (modeUI->_plyRankingUI.at(0).second == ObjectBase::OBJECTTYPE::PLAYER3)
 		{
-			DrawRotaGraph(_ply[2]->_x, _ply[2]->_y - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
+			DrawRotaGraph(static_cast<int>(_ply[2]->_x), static_cast<int>(_ply[2]->_y) - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
 		}
 
 		else if (modeUI->_plyRankingUI.at(1).second == ObjectBase::OBJECTTYPE::PLAYER3)
 		{
 			if (modeUI->_plyRankingUI.at(0).first == modeUI->_plyRankingUI.at(1).first)
 			{
-				DrawRotaGraph(_ply[2]->_x, _ply[2]->_y - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
+				DrawRotaGraph(static_cast<int>(_ply[2]->_x), static_cast<int>(_ply[2]->_y) - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
 			}
 
 		}
@@ -171,7 +171,7 @@ void Crown::Draw(Game& g)
 		{
 			if (modeUI->_plyRankingUI.at(0).first == modeUI->_plyRankingUI.at(2).first)
 			{
-				DrawRotaGraph(_ply[2]->_x, _ply[2]->_y - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
+				DrawRotaGraph(static_cast<int>(_ply[2]->_x), static_cast<int>(_ply[2]->_y) - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
 			}
 
 		}
@@ -180,21 +180,21 @@ void Crown::Draw(Game& g)
 		{
 			if (modeUI->_plyRankingUI.at(0).first == modeUI->_plyRankingUI.at(3).first)
 			{
-				DrawRotaGraph(_ply[2]->_x, _ply[2]->_y - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
+				DrawRotaGraph(static_cast<int>(_ply[2]->_x), static_cast<int>(_ply[2]->_y) - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
 			}
 
 		}
 
 		if (modeUI->_plyRankingUI.at(0).second == ObjectBase::OBJECTTYPE::PLAYER4)
 		{
-			DrawRotaGraph(_ply[3]->_x, _ply[3]->_y - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
+			DrawRotaGraph(static_cast<int>(_ply[3]->_x), static_cast<int>(_ply[3]->_y) - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
 		}
 
 		else if (modeUI->_plyRankingUI.at(1).second == ObjectBase::OBJECTTYPE::PLAYER4)
 		{
 			if (modeUI->_plyRankingUI.at(0).first == modeUI->_plyRankingUI.at(1).first)
 			{
-				DrawRotaGraph(_ply[3]->_x, _ply[3]->_y - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
+				DrawRotaGraph(static_cast<int>(_ply[3]->_x), static_cast<int>(_ply[3]->_y) - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
 			}
 
 		}
@@ -203,7 +203,7 @@ void Crown::Draw(Game& g)
 		{
 			if (modeUI->_plyRankingUI.at(0).first == modeUI->_plyRankingUI.at(2).first)
 			{
-				DrawRotaGraph(_ply[3]->_x, _ply[3]->_y - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
+				DrawRotaGraph(static_cast<int>(_ply[3]->_x), static_cast<int>(_ply[3]->_y) - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
 			}
 
 		}
@@ -212,7 +212,7 @@ void Crown::Draw(Game& g)
 		{
 			if (modeUI->_plyRankingUI.at(0).first == modeUI->_plyRankingUI.at(3).first)
 			{
-				DrawRotaGraph(_ply[3]->_x, _ply[3]->_y - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
+				DrawRotaGraph(static_cast<int>(_ply[3]->_x), static_cast<int>(_ply[3]->_y) - 95, 1.0, 0.0, _grHandle, TRUE, FALSE);
 			}
 
 		}

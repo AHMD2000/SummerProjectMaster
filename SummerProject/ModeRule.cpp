@@ -5,7 +5,7 @@
 #include "ResourceServer.h"
 #include "ModeTitle.h"
 
-typedef enum
+enum class RULESTATE
 {
 	Rule_Coin,
 	Rule_Item,
@@ -13,7 +13,7 @@ typedef enum
 	Rule_Num
 };
 
-static int NowSelect = Rule_Coin;
+static int NowSelect = static_cast<int>(RULESTATE::Rule_Coin);
 bool ModeRule::Initialize(Game& g)
 {
 	if (!base::Initialize(g)) { return false; }
@@ -51,20 +51,20 @@ bool ModeRule::Process(Game& g)
 	}
 
 	if (g._gTrg[0] & PAD_INPUT_RIGHT) {
-		NowSelect = (NowSelect + 1) % Rule_Num;
+		NowSelect = (NowSelect + 1) % static_cast<int>(RULESTATE::Rule_Num);
 
 		//SE“ü—Í
 		PlaySoundMem(g._se["TitleMove"], DX_PLAYTYPE_BACK);
 	}
 	if (g._gTrg[0] & PAD_INPUT_LEFT) {
-		NowSelect = (NowSelect + (Rule_Num - 1)) % Rule_Num;
+		NowSelect = (NowSelect + (static_cast<int>(RULESTATE::Rule_Num) - 1)) % static_cast<int>(RULESTATE::Rule_Num);
 
 		//SE“ü—Í
 		PlaySoundMem(g._se["TitleMove"], DX_PLAYTYPE_BACK);
 	}
 	switch (NowSelect)
 	{
-	case Rule_Coin:
+	case static_cast<int>(RULESTATE:: Rule_Coin) :
 	{
 		_cgHandle = ResourceServer::GetHandles("RuleScreen");
 
@@ -72,7 +72,7 @@ bool ModeRule::Process(Game& g)
 	}
 	
 
-	case Rule_Item:
+	case static_cast<int>(RULESTATE::Rule_Item) :
 	{
 		_cgHandle = ResourceServer::GetHandles("RuleCoin");
 
@@ -80,7 +80,7 @@ bool ModeRule::Process(Game& g)
 
 	}
 	
-	case Mode_Title:
+	case static_cast<int>(RULESTATE::Mode_Title):
 	{
 		_cgHandle = ResourceServer::GetHandles("RuleItem");
 

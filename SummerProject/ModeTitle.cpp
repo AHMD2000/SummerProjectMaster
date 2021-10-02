@@ -8,7 +8,7 @@
 #include "ModeCredit.h"
 
 
-static int NowSelectTitle = Title_Gamestart; // 現在の選択状況
+static int NowSelectTitle = static_cast<int>(TITLESTATE::Title_Gamestart); // 現在の選択状況
 
 bool ModeTitle::Initialize(Game& g)
 {
@@ -50,13 +50,13 @@ bool ModeTitle::Process(Game& g)
 	if (_TitleProcess == true)
 	{
 		if (g._gTrg[0] & PAD_INPUT_DOWN) {// 下を押されたら
-			NowSelectTitle = (NowSelectTitle + 1) % Title_Num;// 選択状態を一つ下げる
+			NowSelectTitle = (NowSelectTitle + 1) % static_cast<int>(TITLESTATE::Title_Num);// 選択状態を一つ下げる
 
 			//SE入力
 			PlaySoundMem(g._se["TitleMove"], DX_PLAYTYPE_BACK);
 		}
 		if (g._gTrg[0] & PAD_INPUT_UP) {// 上を押されたら
-			NowSelectTitle = (NowSelectTitle + (Title_Num - 1)) % Title_Num;// 選択状態を一つあげる
+			NowSelectTitle = (NowSelectTitle + (static_cast<int>(TITLESTATE::Title_Num) - 1)) % static_cast<int>(TITLESTATE::Title_Num);// 選択状態を一つあげる
 
 			 //SE入力
 			PlaySoundMem(g._se["TitleMove"], DX_PLAYTYPE_BACK);
@@ -64,7 +64,7 @@ bool ModeTitle::Process(Game& g)
 		if (g._gTrg[0] & PAD_INPUT_B) {// Bボタンを押されたら
 			switch (NowSelectTitle)//選択中の状態によって処理を分岐
 			{
-			case Title_Gamestart: // スタート選択中なら
+				case static_cast<int>(TITLESTATE::Title_Gamestart): // スタート選択中なら
 			{
 				// このモードを削除
 				g._serverMode->Del(this);
@@ -85,7 +85,7 @@ bool ModeTitle::Process(Game& g)
 			}
 			break;
 
-			case Title_Rule: // ゲーム説明選択中なら
+			case static_cast<int>(TITLESTATE::Title_Rule): // ゲーム説明選択中なら
 			{
 				//// このモードを削除
 				//g._serverMode->Del(this);
@@ -104,7 +104,7 @@ bool ModeTitle::Process(Game& g)
 			}
 			break;
 
-			case Title_Credit: // クレジット選択中なら
+			case static_cast<int>(TITLESTATE::Title_Credit): // クレジット選択中なら
 			{
 				//// このモードを削除
 				//g._serverMode->Del(this);
@@ -146,13 +146,13 @@ bool ModeTitle::Draw(Game& g)
 	int _wakuY = 0;
 	switch (NowSelectTitle) // 選択状態によって処理を分岐
 	{
-	case Title_Gamestart: // スタート選択中なら
+	case static_cast<int>(TITLESTATE::Title_Gamestart): // スタート選択中なら
 		_wakuY = 730;   // スタートの座標を格納
 		break;
-	case Title_Rule: // 説明選択中なら
+		case static_cast<int>(TITLESTATE::Title_Rule): // 説明選択中なら
 		_wakuY = 810;   // 説明の座標を格納
 		break;
-	case Title_Credit: // クレジット選択中なら
+	case static_cast<int>(TITLESTATE::Title_Credit): // クレジット選択中なら
 		_wakuY = 890;   // クレジットの座標を格納
 		break;
 	}

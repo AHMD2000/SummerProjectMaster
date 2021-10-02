@@ -14,6 +14,6 @@ public:
 protected:
 
 	// ƒ^ƒCƒgƒ‹
-	int		_cgCredit;
+	int		_cgCredit = 0;
 
 };
