@@ -33,8 +33,6 @@ private:
 
 	/*CHARACTER _character;*/
 
-	MapChips	_mapchip;
-
 	ObjectBase::OBJECTTYPE _id;
 	int _item_cnt;
 };

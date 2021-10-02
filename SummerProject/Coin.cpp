@@ -146,7 +146,7 @@ void Coin::Process(Game& g)
 			_y += static_cast<int>(_vy);
 			modeGame->_newMapChips->IsHit(*this, 0, static_cast<int>(_vy));
 
-			if (_y >= (_grandY - 1))
+			if (static_cast<int>(_y) >= (_grandY - 1))
 			{
 				_vy = -E * _vy;
 				//_vx = -E * _vx;

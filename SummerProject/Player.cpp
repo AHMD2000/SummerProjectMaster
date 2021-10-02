@@ -1255,7 +1255,7 @@ void Player::BananaPut(Game& g)
 			if (_charaDir == 0)
 			{
 				auto banana = new Banana(ObjectBase::OBJECTTYPE::BANANA, 2/*,Banana::CHARACTER::kPLAYER1*/);
-				banana->SetPosition(_x, _y + banana->GetH() - 20);
+				banana->SetPosition(static_cast<int>(_x), static_cast<int>(_y) + banana->GetH() - 20);
 				banana->_charaDir = 0;
 				g._objServer.Add(banana);
 			}
@@ -1263,7 +1263,7 @@ void Player::BananaPut(Game& g)
 			if (_charaDir == 2)
 			{
 				auto banana = new Banana(ObjectBase::OBJECTTYPE::BANANA, 2/*,Banana::CHARACTER::kPLAYER1*/);
-				banana->SetPosition(_x - _w / 2 - banana->GetH() / 2 + 20, _y);
+				banana->SetPosition(static_cast<int>(_x) - _w / 2 - banana->GetH() / 2 + 20, static_cast<int>(_y));
 				banana->_charaDir = 2;
 				g._objServer.Add(banana);
 			}
@@ -1271,7 +1271,7 @@ void Player::BananaPut(Game& g)
 			if (_charaDir == 3)
 			{
 				auto banana = new Banana(ObjectBase::OBJECTTYPE::BANANA, 2/*,Banana::CHARACTER::kPLAYER1*/);
-				banana->SetPosition(_x + _w / 2 + banana->GetH() / 2 - 24, _y);
+				banana->SetPosition(static_cast<int>(_x) + _w / 2 + banana->GetH() / 2 - 24, static_cast<int>(_y));
 				banana->_charaDir = 4;
 				g._objServer.Add(banana);
 			}
@@ -1284,7 +1284,7 @@ void Player::BananaPut(Game& g)
 			if (_charaDir == 1)
 			{
 				auto banana = new Banana(ObjectBase::OBJECTTYPE::BANANA, 3/*,Banana::CHARACTER::kPLAYER1*/);
-				banana->SetPosition(_x, _y - _h + 45);
+				banana->SetPosition(static_cast<int>(_x), static_cast<int>(_y) - _h + 45);
 				banana->_charaDir = 6;
 				g._objServer.Add(banana);
 			}
@@ -1292,7 +1292,7 @@ void Player::BananaPut(Game& g)
 			if (_charaDir == 0)
 			{
 				auto banana = new Banana(ObjectBase::OBJECTTYPE::BANANA, 3/*,Banana::CHARACTER::kPLAYER1*/);
-				banana->SetPosition(_x, _y + banana->GetH() - 20);
+				banana->SetPosition(static_cast<int>(_x), static_cast<int>(_y) + banana->GetH() - 20);
 				banana->_charaDir = 0;
 				g._objServer.Add(banana);
 			}
@@ -1300,7 +1300,7 @@ void Player::BananaPut(Game& g)
 			if (_charaDir == 2)
 			{
 				auto banana = new Banana(ObjectBase::OBJECTTYPE::BANANA, 3/*,Banana::CHARACTER::kPLAYER1*/);
-				banana->SetPosition(_x - _w / 2 - banana->GetH() / 2 + 20, _y);
+				banana->SetPosition(static_cast<int>(_x) - _w / 2 - banana->GetH() / 2 + 20, static_cast<int>(_y));
 				banana->_charaDir = 2;
 				g._objServer.Add(banana);
 			}
@@ -1308,7 +1308,7 @@ void Player::BananaPut(Game& g)
 			if (_charaDir == 3)
 			{
 				auto banana = new Banana(ObjectBase::OBJECTTYPE::BANANA, 3/*,Banana::CHARACTER::kPLAYER1*/);
-				banana->SetPosition(_x + _w / 2 + banana->GetH() / 2 - 24, _y);
+				banana->SetPosition(static_cast<int>(_x) + _w / 2 + banana->GetH() / 2 - 24, static_cast<int>(_y));
 				banana->_charaDir = 4;
 				g._objServer.Add(banana);
 			}
@@ -1321,7 +1321,7 @@ void Player::BananaPut(Game& g)
 			if (_charaDir == 1)
 			{
 				auto banana = new Banana(ObjectBase::OBJECTTYPE::BANANA, 4/*,Banana::CHARACTER::kPLAYER1*/);
-				banana->SetPosition(_x, _y - _h + 45);
+				banana->SetPosition(static_cast<int>(_x), static_cast<int>(_y) - _h + 45);
 				banana->_charaDir = 6;
 				g._objServer.Add(banana);
 			}
@@ -1329,7 +1329,7 @@ void Player::BananaPut(Game& g)
 			if (_charaDir == 0)
 			{
 				auto banana = new Banana(ObjectBase::OBJECTTYPE::BANANA, 4/*,Banana::CHARACTER::kPLAYER1*/);
-				banana->SetPosition(_x, _y + banana->GetH() - 20);
+				banana->SetPosition(static_cast<int>(_x), static_cast<int>(_y) + banana->GetH() - 20);
 				banana->_charaDir = 0;
 				g._objServer.Add(banana);
 			}
@@ -1337,7 +1337,7 @@ void Player::BananaPut(Game& g)
 			if (_charaDir == 2)
 			{
 				auto banana = new Banana(ObjectBase::OBJECTTYPE::BANANA, 4/*,Banana::CHARACTER::kPLAYER1*/);
-				banana->SetPosition(_x - _w / 2 - banana->GetH() / 2 + 20, _y);
+				banana->SetPosition(static_cast<int>(_x) - _w / 2 - banana->GetH() / 2 + 20, static_cast<int>(_y));
 				banana->_charaDir = 2;
 				g._objServer.Add(banana);
 			}
@@ -1345,7 +1345,7 @@ void Player::BananaPut(Game& g)
 			if (_charaDir == 3)
 			{
 				auto banana = new Banana(ObjectBase::OBJECTTYPE::BANANA, 4/*,Banana::CHARACTER::kPLAYER1*/);
-				banana->SetPosition(_x + _w / 2 + banana->GetH() / 2 - 24, _y);
+				banana->SetPosition(static_cast<int>(_x) + _w / 2 + banana->GetH() / 2 - 24, static_cast<int>(_y));
 				banana->_charaDir = 4;
 				g._objServer.Add(banana);
 			}

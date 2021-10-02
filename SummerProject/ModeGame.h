@@ -113,9 +113,6 @@ private:
 
 	std::vector<int> _grAllCountDownHandles;// すべてのカウントダウンのグラフィックハンドル
 
-	// マップチップ
-	MapChips	_mapChips;
-
 	//王冠
 	std::unique_ptr<Crown> _crown;
 

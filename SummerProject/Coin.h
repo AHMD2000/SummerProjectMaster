@@ -49,7 +49,4 @@ private:
 
 	ModeGame& _modeGame;
 
-	MapChips	_mapchip;
-
-	
 };

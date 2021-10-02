@@ -25,6 +25,4 @@ private:
 	ObjectBase::OBJECTTYPE _id;
 
 	ModeGame& _modeGame;
-
-	MapChips	_mapchip;
 };

@@ -35,9 +35,6 @@ public:
 
 	ObjectServer _objServer;
 
-	// マップチップ
-	MapChips	_mapChips;
-
 	// SEマップ
 	std::unordered_map<std::string, int>	_se;
 
