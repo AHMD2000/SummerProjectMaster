@@ -42,6 +42,8 @@
 #include <vector>
 #include <utility>
 
+#pragma warning(disable:26439)
+
 // for isnan/isinf
 #if __cplusplus >= 201103L
 #include <cmath>

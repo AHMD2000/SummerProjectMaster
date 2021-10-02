@@ -24,10 +24,10 @@ namespace COINAPPEARANCE
 
 namespace PlayerPos
 {
-	Vector2 PLAYER1 = { 730.0 , 280.0 };
-	Vector2 PLAYER2 = { 1390.0 , 480.0 };
-	Vector2 PLAYER3 = { 750.0 , 700.0 };
-	Vector2 PLAYER4 = { 1230.0 ,  780.0 };
+	Vector2 PLAYER1 = { 560.0 , 300.0 };
+	Vector2 PLAYER2 = { 1410.0 , 420.0 };
+	Vector2 PLAYER3 = { 675.0 , 740.0 };
+	Vector2 PLAYER4 = { 1425.0 , 780.0 };
 }
 
 bool ModeGame::Initialize(Game& g)

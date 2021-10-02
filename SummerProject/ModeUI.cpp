@@ -13,7 +13,7 @@ bool ModeUI::Initialize(Game& g)
 	_grUIgaugeHandle = ResourceServer::GetHandles("UI_gauge");
 	_UILimitTime = ResourceServer::GetHandles("UI_limitTime");
 
-	_gaugeX = 130;
+	_gaugeX = 125;
 	_gaugeY = 1010;
 
 	_maxCoin = 50.0;
@@ -169,18 +169,18 @@ bool ModeUI::Draw(Game& g)
 	{
 		if (_plyRankingUI.at(0).second == ObjectBase::OBJECTTYPE::PLAYER1)
 		{
-			DrawGraph(0 * 390, 900, _grAllHandles[0], TRUE);
+			DrawGraph(0 * 420, 900, _grAllHandles[0], TRUE);
 		}
 
 		else if (_plyRankingUI.at(1).second == ObjectBase::OBJECTTYPE::PLAYER1)
 		{
 			if (_plyRankingUI.at(0).first == _plyRankingUI.at(1).first)
 			{
-				DrawGraph(0 * 390, 900, _grAllHandles[0], TRUE);
+				DrawGraph(0 * 420, 900, _grAllHandles[0], TRUE);
 			}
 			else
 			{
-				DrawGraph(0 * 390, 900, _grAllHandles[1], TRUE);
+				DrawGraph(0 * 420, 900, _grAllHandles[1], TRUE);
 			}
 		}
 
@@ -188,11 +188,11 @@ bool ModeUI::Draw(Game& g)
 		{
 			if (_plyRankingUI.at(0).first == _plyRankingUI.at(2).first)
 			{
-				DrawGraph(0 * 390, 900, _grAllHandles[0], TRUE);
+				DrawGraph(0 * 420, 900, _grAllHandles[0], TRUE);
 			}
 			else
 			{
-				DrawGraph(0 * 390, 900, _grAllHandles[1], TRUE);
+				DrawGraph(0 * 420, 900, _grAllHandles[1], TRUE);
 			}
 		}
 
@@ -200,11 +200,11 @@ bool ModeUI::Draw(Game& g)
 		{
 			if (_plyRankingUI.at(0).first == _plyRankingUI.at(3).first)
 			{
-				DrawGraph(0 * 390, 900, _grAllHandles[0], TRUE);
+				DrawGraph(0 * 420, 900, _grAllHandles[0], TRUE);
 			}
 			else
 			{
-				DrawGraph(0 * 390, 900, _grAllHandles[1], TRUE);
+				DrawGraph(0 * 420, 900, _grAllHandles[1], TRUE);
 			}
 		}
 
@@ -251,18 +251,18 @@ bool ModeUI::Draw(Game& g)
 
 		if (_plyRankingUI.at(0).second == ObjectBase::OBJECTTYPE::PLAYER3)
 		{
-			DrawGraph(2 * 420 + 265, 900, _grAllHandles[4], TRUE);
+			DrawGraph( 1080, 900, _grAllHandles[4], TRUE);
 		}
 
 		else if (_plyRankingUI.at(1).second == ObjectBase::OBJECTTYPE::PLAYER3)
 		{
 			if (_plyRankingUI.at(0).first == _plyRankingUI.at(1).first)
 			{
-				DrawGraph(2 * 420 + 265, 900, _grAllHandles[4], TRUE);
+				DrawGraph(1080, 900, _grAllHandles[4], TRUE);
 			}
 			else
 			{
-				DrawGraph(2 * 420 + 265, 900, _grAllHandles[5], TRUE);
+				DrawGraph(1080, 900, _grAllHandles[5], TRUE);
 			}
 		}
 
@@ -270,11 +270,11 @@ bool ModeUI::Draw(Game& g)
 		{
 			if (_plyRankingUI.at(0).first == _plyRankingUI.at(2).first)
 			{
-				DrawGraph(2 * 420 + 265, 900, _grAllHandles[4], TRUE);
+				DrawGraph(1080, 900, _grAllHandles[4], TRUE);
 			}
 			else
 			{
-				DrawGraph(2 * 420 + 265, 900, _grAllHandles[5], TRUE);
+				DrawGraph(1080, 900, _grAllHandles[5], TRUE);
 			}
 		}
 
@@ -282,28 +282,28 @@ bool ModeUI::Draw(Game& g)
 		{
 			if (_plyRankingUI.at(0).first == _plyRankingUI.at(3).first)
 			{
-				DrawGraph(2 * 420 + 265, 900, _grAllHandles[4], TRUE);
+				DrawGraph(1080, 900, _grAllHandles[4], TRUE);
 			}
 			else
 			{
-				DrawGraph(2 * 420 + 265, 900, _grAllHandles[5], TRUE);
+				DrawGraph(1080, 900, _grAllHandles[5], TRUE);
 			}
 		}
 
 		if (_plyRankingUI.at(0).second == ObjectBase::OBJECTTYPE::PLAYER4)
 		{
-			DrawGraph(2 * 420 + 265 + 420, 900, _grAllHandles[6], TRUE);
+			DrawGraph(1080 + 420, 900, _grAllHandles[6], TRUE);
 		}
 
 		else if (_plyRankingUI.at(1).second == ObjectBase::OBJECTTYPE::PLAYER4)
 		{
 			if (_plyRankingUI.at(0).first == _plyRankingUI.at(1).first)
 			{
-				DrawGraph(2 * 420 + 265 + 420, 900, _grAllHandles[6], TRUE);
+				DrawGraph(1080 + 420, 900, _grAllHandles[6], TRUE);
 			}
 			else
 			{
-				DrawGraph(2 * 420 + 265 + 420, 900, _grAllHandles[7], TRUE);
+				DrawGraph(1080 + 420, 900, _grAllHandles[7], TRUE);
 			}
 		}
 
@@ -311,11 +311,11 @@ bool ModeUI::Draw(Game& g)
 		{
 			if (_plyRankingUI.at(0).first == _plyRankingUI.at(2).first)
 			{
-				DrawGraph(2 * 420 + 265 + 420, 900, _grAllHandles[6], TRUE);
+				DrawGraph(1080 + 420, 900, _grAllHandles[6], TRUE);
 			}
 			else
 			{
-				DrawGraph(2 * 420 + 265 + 420, 900, _grAllHandles[7], TRUE);
+				DrawGraph(1080 + 420, 900, _grAllHandles[7], TRUE);
 			}
 		}
 
@@ -323,19 +323,21 @@ bool ModeUI::Draw(Game& g)
 		{
 			if (_plyRankingUI.at(0).first == _plyRankingUI.at(3).first)
 			{
-				DrawGraph(2 * 420 + 265 + 420, 900, _grAllHandles[6], TRUE);
+				DrawGraph(1080 + 420, 900, _grAllHandles[6], TRUE);
 			}
 			else
 			{
-				DrawGraph(2 * 420 + 265 + 420, 900, _grAllHandles[7], TRUE);
+				DrawGraph(1080 + 420, 900, _grAllHandles[7], TRUE);
 			}
 		}
 	}
 
 	else
 	{
-		DrawGraph(60 + 0 * 390, 900, _grAllHandles[0], TRUE);
-		DrawGraph(60 + 1 * 390, 900, _grAllHandles[2], TRUE);
+		DrawGraph(0 * 420, 900, _grAllHandles[0], TRUE);
+		DrawGraph(1 * 420, 900, _grAllHandles[2], TRUE);
+		DrawGraph(1080, 900, _grAllHandles[4], TRUE);
+		DrawGraph(1080 + 420, 900, _grAllHandles[6], TRUE);
 	}
 
 	_plyRankingUI.clear();
@@ -357,18 +359,21 @@ bool ModeUI::Draw(Game& g)
 
 	//SetFontSize(20);
 
+#pragma warning(disable:4244)
+
 	//コインのゲージを表示
 	for (auto i = 0; i < 2; ++i)
 	{
-		DrawRectGraph(_gaugeX + i * 420, _gaugeY, 0, 0, 260 * static_cast<int>(_plyCoinRate[i]), 60, _grUIgaugeHandle, TRUE, FALSE);
+		DrawRectGraph(_gaugeX + i * 420, _gaugeY, 0, 0, 260 * _plyCoinRate[i], 60, _grUIgaugeHandle, TRUE, FALSE);
 	}
 
-	DrawRectGraph(_gaugeX + 2 * 420 + 265, _gaugeY, 0, 0, 260 * static_cast<int>(_plyCoinRate[2]), 60, _grUIgaugeHandle, TRUE, FALSE);
-	DrawRectGraph(_gaugeX + 2 * 420 + 265 + 420, _gaugeY, 0, 0, 260 * static_cast<int>(_plyCoinRate[3]), 60, _grUIgaugeHandle, TRUE, FALSE);
+	DrawRectGraph(_gaugeX + 1080, _gaugeY, 0, 0, 260 * _plyCoinRate[2], 60, _grUIgaugeHandle, TRUE, FALSE);
+	DrawRectGraph(_gaugeX + 1500, _gaugeY, 0, 0, 260 * _plyCoinRate[3], 60, _grUIgaugeHandle, TRUE, FALSE);
+#pragma warning(default:4244)
 	
 	/*DrawGraph(_gaugeX + 0 * 390, _gaugeY, _grUIgaugeHandle, TRUE);*/
 
-	DrawGraph(2 * 420, 900, _UILimitTime, TRUE);
+	DrawGraph(828, 890, _UILimitTime, TRUE);
 
 	// 描画する文字列のサイズを設定
 	SetFontSize(64);

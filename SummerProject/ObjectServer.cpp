@@ -3,6 +3,7 @@
 #include	<algorithm>
 
 ObjectServer::ObjectServer()
+	:_effectCnt(0)
 {
 	_vObject.clear();
 	_vAdd.clear();

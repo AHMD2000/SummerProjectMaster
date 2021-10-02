@@ -38,8 +38,8 @@ void Plexus::Init()
 		_w = 120;
 		_h = 120;
 		
-		_x = 423 + _w / 2;
-		_y = 375 + _h;
+		_x = static_cast<double>(423) + static_cast<double>(_w) / 2.0;
+		_y = static_cast<double>(375) + static_cast<double>(_h);
 	}
 	
 }

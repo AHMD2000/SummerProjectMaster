@@ -873,7 +873,7 @@ void Player::Draw(Game& g) {
 
 	if (_cooltime <= 0)
 	{
-		DrawRotaGraph(static_cast<int>(_x) + 30, static_cast<int>(_y), 1.0, 0.0, _grStandbyBanana, TRUE, FALSE);
+		DrawRotaGraph(static_cast<int>(_x), static_cast<int>(_y) - 60, 1.0, 0.0, _grStandbyBanana, TRUE, FALSE);
 	}
 
 	/*DrawGraph(sx, sy, _grHandle, TRUE);*/
@@ -1383,9 +1383,9 @@ void Player::NockBack(Game& g)
 
 				coin->_coinDir = rand() % 2;
 
-				auto x = _x;/*(coin->_coinDir) ? _x + _w: _x - _w;*/
-				auto y = _y;
-				coin->_grandY = _y;
+				auto x = static_cast<int>(_x);/*(coin->_coinDir) ? _x + _w: _x - _w;*/
+				auto y = static_cast<int>(_y);
+				coin->_grandY = static_cast<int>(_y);
 
 				coin->SetPosition(x, y);
 
@@ -1426,9 +1426,9 @@ void Player::NockBack(Game& g)
 
 			coin->_coinDir = rand() % 2;
 
-			auto x = _x;/*(coin->_coinDir) ? _x + _w : _x - _w;*/
-			auto y = _y - 10;
-			coin->_grandY = _y;
+			auto x = static_cast<int>(_x);/*(coin->_coinDir) ? _x + _w : _x - _w;*/
+			auto y = static_cast<int>(_y) - 10;
+			coin->_grandY = static_cast<int>(_y);
 
 			coin->SetPosition(x, y);
 
@@ -1463,9 +1463,9 @@ void Player::NockBack(Game& g)
 
 			coin->_coinDir = rand() % 2;
 
-			auto x = _x;/*(coin->_coinDir) ? _x + _w : _x - _w;*/
-			auto y = _y - 10;
-			coin->_grandY = _y;
+			int x = static_cast<int>(_x);/*(coin->_coinDir) ? _x + _w : _x - _w;*/
+			int y = static_cast<int>(_y) - 10;
+			coin->_grandY = static_cast<int>(_y);
 
 			coin->SetPosition(x, y);
 
@@ -1526,7 +1526,7 @@ void Player::Rush(Game& g)
 
 	Vector2 _velocityDirEffect{ static_cast<double>(_x), static_cast<double>(_y) - 40.0 };
 
-	if (modeGame->_newMapChips->IsHitFlark(*this, _x, _y != 0) || _isDebuf == true)
+	if (modeGame->_newMapChips->IsHitFlark(*this, static_cast<int>(_x), static_cast<int>(_y) != 0) || _isDebuf == true)
 	{
 		_spd = 2.0;
 	}

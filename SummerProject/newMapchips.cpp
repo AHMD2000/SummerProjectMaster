@@ -12,6 +12,9 @@
 
 #include "res/json/picojson.h"
 
+#pragma warning(disable:6386)
+#pragma warning(disable:26451)
+
 
 NewMapChips::NewMapChips(std::string filePath, std::string tiledFileName)
 {
@@ -50,9 +53,9 @@ std::string NewMapChips::StringFileLoad(std::string strFileName)
 	fseek(fp, 0, SEEK_END); int size = ftell(fp); fseek(fp, 0, SEEK_SET);
 	// メモリを確保する
 	char* p;
-	p = new char[size + 1];
+	p = new char[static_cast<size_t>(size) + static_cast<size_t>(1)];
 	// メモリにデータを読み込む
-	fread(p, 1, size, fp);
+	fread(p, static_cast<size_t>(1), static_cast<size_t>(size), fp);
 	// ファイルを閉じる
 	fclose(fp);
 	p[size] = '\0';
@@ -294,19 +297,19 @@ int NewMapChips::IsHit(ObjectBase& o, int mx, int my)
 				// X,Yの移動方向を見て、その反対方向に補正する
 				if (mx < 0)
 				{	// 左に動いていたので、右に補正
-					o._x = x * CHIPSIZE_W + CHIPSIZE_W - (o._hit_x);
+					o._x = static_cast<double>(x) * static_cast<double>(CHIPSIZE_W) + static_cast<double>(CHIPSIZE_W) - static_cast<double>((o._hit_x));
 				}
 				if (mx > 0)
 				{	// 右に動いていたので、左に補正
-					o._x = x * CHIPSIZE_W - (o._hit_x + o._hit_w);
+					o._x = static_cast<double>(x) * static_cast<double>(CHIPSIZE_W) - (static_cast<double>(o._hit_x) + static_cast<double>(o._hit_w));
 				}
 				if (my > 0)
 				{	// 下に動いていたので、上に補正
-					o._y = y * CHIPSIZE_H - (o._hit_y + o._hit_h);
+					o._y = static_cast<double>(y) * static_cast<double>(CHIPSIZE_H) - (static_cast<double>(o._hit_y) + static_cast<double>(o._hit_h));
 				}
 				if (my < 0)
 				{	// 上に動いていたので、下に補正
-					o._y = y * CHIPSIZE_H + CHIPSIZE_H - (o._hit_y);
+					o._y = static_cast<double>(y) * static_cast<double>(CHIPSIZE_H) + static_cast<double>(CHIPSIZE_H) - static_cast<double>((o._hit_y));
 				}
 				// 当たったので戻る
 				return 1;
