@@ -19,6 +19,8 @@ bool ModeRule::Initialize(Game& g)
 	if (!base::Initialize(g)) { return false; }
 
 	_cgHandle = ResourceServer::GetHandles("RuleScreen");
+
+	return true;
 }
 
 bool ModeRule::Terminate(Game& g)

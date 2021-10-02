@@ -37,9 +37,9 @@ bool ModeGame::Initialize(Game& g) {
 	
 	_countDownCnt = 60 * 4;
 
-	_gameCnt = 60 * 90;
+	/*_gameCnt = 60 * 90;*/
 
-	/*_gameCnt = 60 * 10;*/
+	_gameCnt = 60 * 10;
 
 	/*_gameCnt = 60 * 1;*/
 

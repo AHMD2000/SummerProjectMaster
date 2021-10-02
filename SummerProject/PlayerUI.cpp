@@ -71,25 +71,28 @@ void PlayerUI::Draw(Game& g)
 	{
 		DrawRotaGraph(240 + 480 * 0, 290, 2.0, 0.0, _grHandle, TRUE, FALSE);
 		DrawRotaGraph(165 + 480 * 0, 500, 1.0, 0.0, _grAttackUIHandle, TRUE, FALSE);
-		DrawRotaGraph(205 + 480 * 0, 715, 1.0, 0.0, _grResultCoinHandle, TRUE, FALSE);
+		DrawRotaGraph(/*150*/170 + 480 * 0, 745, 1.0, 0.0, _grResultCoinHandle, TRUE, FALSE);
 	}
 
 	if (GetType() == ObjectBase::OBJECTTYPE::PLAYER2)
 	{
 		DrawRotaGraph(240 + 480 * 1, 290, 2.0, 0.0, _grHandle, TRUE, FALSE);
 		DrawRotaGraph(165 + 480 * 1, 500, 1.0, 0.0, _grAttackUIHandle, TRUE, FALSE);
+		DrawRotaGraph(170 + 480 * 1, 745, 1.0, 0.0, _grResultCoinHandle, TRUE, FALSE);
 	}
 
 	if (GetType() == ObjectBase::OBJECTTYPE::PLAYER3)
 	{
 		DrawRotaGraph(240 + 480 * 2, 290, 2.0, 0.0, _grHandle, TRUE, FALSE);
 		DrawRotaGraph(165 + 480 * 2, 500, 1.0, 0.0, _grAttackUIHandle, TRUE, FALSE);
+		DrawRotaGraph(170 + 480 * 2, 745, 1.0, 0.0, _grResultCoinHandle, TRUE, FALSE);
 	}
 
 	if (GetType() == ObjectBase::OBJECTTYPE::PLAYER4)
 	{
 		DrawRotaGraph(240 + 480 * 3, 290, 2.0, 0.0, _grHandle, TRUE, FALSE);
 		DrawRotaGraph(165 + 480 * 3, 500, 1.0, 0.0, _grAttackUIHandle, TRUE, FALSE);
+		DrawRotaGraph(170 + 480 * 3, 745, 1.0, 0.0, _grResultCoinHandle, TRUE, FALSE);
 	}
 	
 }

@@ -136,16 +136,16 @@ void Coin::Process(Game& g)
 	}
 
 	if (_jump == true)
-	{		_x += _vx;
-			modeGame->_newMapChips->IsHit(*this, _vx, 0);
+	{		_x += static_cast<int>(_vx);
+			modeGame->_newMapChips->IsHit(*this, static_cast<int>(_vx), 0);
 			_vy += _g;
 			auto avy = std::abs(_vy);
 			if (avy > 15) {
 				avy = 15;
 			}
 			_vy = (_vy < 0) ? -avy : avy;
-			_y += _vy;
-			modeGame->_newMapChips->IsHit(*this, 0, _vy);
+			_y += static_cast<int>(_vy);
+			modeGame->_newMapChips->IsHit(*this, 0, static_cast<int>(_vy));
 
 			if (_y >= (_grandY - 1))
 			{

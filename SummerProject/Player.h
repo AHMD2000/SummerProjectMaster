@@ -150,4 +150,6 @@ private:
 	std::vector<int>  _grSpecialEffect;
 	std::vector<int> _grDebufEffect;
 	std::vector<int>  _grStarCoinGetEffect;
+
+	int _grStandbyBanana;
 };

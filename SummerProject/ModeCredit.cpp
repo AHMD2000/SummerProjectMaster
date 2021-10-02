@@ -11,6 +11,8 @@ bool ModeCredit::Initialize(Game& g)
 	if (!base::Initialize(g)) { return false; }
 
 	_cgCredit = ResourceServer::GetHandles("Credit");
+
+	return true;
 }
 
 bool ModeCredit::Terminate(Game& g)

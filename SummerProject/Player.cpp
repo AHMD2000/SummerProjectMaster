@@ -49,6 +49,8 @@ Player::Player(ObjectBase::OBJECTTYPE id,Game& g)
 	ResourceServer::GetHandles("DebufEffect", _grDebufEffect);
 	ResourceServer::GetHandles("StarCoinGetEffect", _grStarCoinGetEffect);
 
+	_grStandbyBanana = ResourceServer::GetHandles("StandbyBanana" + std::to_string(GetId()));
+
 	Init();
 }
 
@@ -76,11 +78,12 @@ void Player::Init()
 	_finalBGM = true;
 	_bananaAttack = false;
 	_flarkEffect = false;
+	//バナナのクールタイム
+	_cooltime = 0;
 	_bananaGage = 60 * 5;
 	_bananaGageMax = 60 * 5;
 	_stateAttack = true;
 	_fallCoin = false;
-	_cooltime = 0;
 	/*_vx = -_w / 2;
 	_vy = -_h + 1;*/
 	_charaDirSlide = 4;
@@ -747,10 +750,10 @@ void Player::Move(Game& g)
 	_velocityDir.Normalize();
 	_velocityDir *= _spd;
 
-	_x += _velocityDir.x;
-	modeGame->_newMapChips->IsHit(*this, _velocityDir.x, 0);
-	_y += _velocityDir.y;
-	modeGame->_newMapChips->IsHit(*this, 0, _velocityDir.y);
+	_x += static_cast<int>(_velocityDir.x);
+	modeGame->_newMapChips->IsHit(*this, static_cast<int>(_velocityDir.x), 0);
+	_y += static_cast<int>(_velocityDir.y);
+	modeGame->_newMapChips->IsHit(*this, 0, static_cast<int>(_velocityDir.y));
 
 	if (_x < 0) { _x = 0; }
 	if (_x + _w > SCREEN_W) { _x = SCREEN_W - _w; }
@@ -873,6 +876,10 @@ void Player::Draw(Game& g) {
 	}
 
 
+	if (_cooltime <= 0)
+	{
+		DrawRotaGraph(_x + 30, _y, 1.0, 0.0, _grStandbyBanana, TRUE, FALSE);
+	}
 
 	/*DrawGraph(sx, sy, _grHandle, TRUE);*/
 

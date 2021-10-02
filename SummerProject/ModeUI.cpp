@@ -24,7 +24,7 @@ bool ModeUI::Initialize(Game& g)
 
 	_BGMPerformance = false;
 
-	_GameMusicPerformance = false;
+	_GameMusicPerformance = true;
 
 
 	return false;
@@ -95,7 +95,7 @@ bool ModeUI::Process(Game& g)
 
 	if (_UIcnt >= 2)
 	{
-		if (_plyRankingUI.at(0).first >= _finalBGMCoin || _plyRankingUI.at(1).first >= _finalBGMCoin || _plyRankingUI.at(2).first >= _finalBGMCoin || _plyRankingUI.at(3).first >= _finalBGMCoin || modeGame->getGameCnt() <= 1200)
+		if (_plyRankingUI.at(0).first >= _finalBGMCoin || _plyRankingUI.at(1).first >= _finalBGMCoin || _plyRankingUI.at(2).first >= _finalBGMCoin || _plyRankingUI.at(3).first >= _finalBGMCoin || modeGame->getGameCnt() <= 1200 && _BGMPerformance == false)
 		{
 
 			//// BGMÄ¶I—¹
@@ -106,10 +106,12 @@ bool ModeUI::Process(Game& g)
 			//_finalBGM = false;
 			_finalBGM = true;
 
-			_GameMusicPerformance = false;
+			_GameMusic = false;
+
+			/*_GameMusicPerformance = false;*/
 		}
 
-		else if (_plyRankingUI.at(0).first <= 35 && _plyRankingUI.at(1).first <= 35 && _plyRankingUI.at(2).first <= 35 && _plyRankingUI.at(3).first <= 35/* && _GameMusic == false*/&& _GameMusicPerformance == false)
+		else if (_plyRankingUI.at(0).first <= 35 && _plyRankingUI.at(1).first <= 35 && _plyRankingUI.at(2).first <= 35 && _plyRankingUI.at(3).first <= 35 && modeGame->getGameCnt() >= 1201/* && _GameMusic == false*/&& _GameMusicPerformance == false)
 		{
 			//// BGMÄ¶I—¹
 			//StopMusic();
@@ -117,7 +119,9 @@ bool ModeUI::Process(Game& g)
 			//modeGame->_bgm = PlayMusic("res/bgm/gameMusic.mp3", DX_PLAYTYPE_LOOP);
 
 			_GameMusic = true;
-			_BGMPerformance = false;
+
+			_finalBGM = false;
+			/*_BGMPerformance = false;*/
 			/*_finalBGM = false;*/
 		}
 
@@ -128,9 +132,11 @@ bool ModeUI::Process(Game& g)
 
 			modeGame->_bgm = PlayMusic("res/bgm/GameFinal.mp3", DX_PLAYTYPE_LOOP);
 
-			_finalBGM = false;
+			/*_finalBGM = false;*/
 
 			_BGMPerformance = true;
+
+			_GameMusicPerformance = false;
 		}
 
 		if (_GameMusicPerformance == false && _GameMusic == true)
@@ -140,9 +146,11 @@ bool ModeUI::Process(Game& g)
 
 			modeGame->_bgm = PlayMusic("res/bgm/gameMusic.mp3", DX_PLAYTYPE_LOOP);
 
-			_GameMusic = false;
+			/*_GameMusic = false;*/
 
 			_GameMusicPerformance = true;
+
+			_BGMPerformance = false;
 		}
 
 	}
