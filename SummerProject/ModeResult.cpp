@@ -86,7 +86,7 @@ bool ModeResult::Process(Game& g)
 
 		// タイトルモードを追加
 		ModeTitle* modeTitle = new ModeTitle();
-		g._serverMode->Add(modeTitle, 0, "Title");
+		g._serverMode->Add(modeTitle, 0, "title");
 
 		//BGM演奏中止
 		StopMusic();

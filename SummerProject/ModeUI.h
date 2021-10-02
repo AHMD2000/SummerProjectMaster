@@ -29,7 +29,7 @@ protected:
 
 	int _grUIgaugeHandle;
 
-	int _UILimitTime;
+	int _UILimitTime = 0;
 
 	int _finalBGMCoin = 40;
 

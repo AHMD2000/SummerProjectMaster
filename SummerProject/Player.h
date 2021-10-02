@@ -7,6 +7,7 @@
 #include	<utility>
 #include	"newMapchips.h"
 #include	"Effect.h"
+#include    "Easing.h"
 
 class Player : public ObjectBase
 {
@@ -99,6 +100,8 @@ private:
 
 	ObjectBase::OBJECTTYPE _id;
 	STATE _state;
+
+	EasingMode _easing;
 
 	int _cooltime;
 

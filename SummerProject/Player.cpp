@@ -49,6 +49,8 @@ Player::Player(ObjectBase::OBJECTTYPE id,Game& g)
 	ResourceServer::GetHandles("DebufEffect", _grDebufEffect);
 	ResourceServer::GetHandles("StarCoinGetEffect", _grStarCoinGetEffect);
 
+	_easing = Easing::GetMode("OutQuint");
+
 	_grStandbyBanana = ResourceServer::GetHandles("StandbyBanana" + std::to_string(GetId()));
 
 	Init();
@@ -913,7 +915,7 @@ void Player::Draw(Game& g) {
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 155);
 		SetDrawMode(DX_DRAWMODE_BILINEAR);
 
-		DrawRotaGraph(sx, sy, 2.0, 0.0, _grDebufEffect[cnt % 10], true, false);
+		DrawRotaGraph(sx, sy - 10, 2.0, 0.0, _grDebufEffect[cnt % 10], true, false);
 
 		SetDrawMode(DX_DRAWMODE_NEAREST);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
@@ -1516,6 +1518,8 @@ void Player::Rush(Game& g)
 {
 	auto cnt = _cnt - _stateCnt;
 
+	auto lifetime = 60 * 1;
+
 	ModeGame* modeGame = (ModeGame*)g._serverMode->Get("Game");
 
 	Vector2	_nock{ 0.0,0.0 };
@@ -1531,40 +1535,59 @@ void Player::Rush(Game& g)
 		_spd = 2.0;
 	}
 	
-	else if (cnt <= 60 * 0.4)
+	/*else if (cnt <= 60 * 0.4)
 	{
 		_spd = 8.0;
     }
 	else
 	{
 		_spd = 5.0;
-	}
+	}*/
 
 	if (_charaDir == 0)
 	{
-		_velocityDir.y = 1.0;
+		/*_velocityDir.y = 1.0;*/
+		auto start = _y;
+		auto stop = _y + 10.0;
+
+		_y = _easing(cnt, start, stop, lifetime);
+		modeGame->_newMapChips->IsHit(*this, 0, 1);
 	}
 	else if (_charaDir == 1)
 	{
-		_velocityDir.y = -1.0;
+		/*_velocityDir.y = -1.0;*/
+		auto start = _y;
+		auto stop = _y - 10.0;
+		_y = _easing(cnt, start, stop, lifetime);
+		modeGame->_newMapChips->IsHit(*this, 0, -1);
 	}
 	else if (_charaDir == 2)
 	{
-		_velocityDir.x = -1.0;
+		/*_velocityDir.x = -1.0;*/
+		auto start = _x;
+		auto stop = _x - 10.0;
+
+		_x = _easing(cnt, start, stop, lifetime);
+		modeGame->_newMapChips->IsHit(*this, -1, 0);
 	}
 
 	else if(_charaDir == 3)
 	{
-		_velocityDir.x = 1.0;
+		/*_velocityDir.x = 1.0;*/
+		auto start = _x;
+		auto stop = _x + 10.0;
+
+		_x = _easing(cnt, start, stop, lifetime);
+		modeGame->_newMapChips->IsHit(*this, 1, 0);
 	}
 
-	_velocityDir.Normalize();
-	_velocityDir *= _spd;
+	/*_velocityDir.Normalize();
+	_velocityDir *= _spd;*/
 
-	_x += static_cast<int>(_velocityDir.x);
+	/*_x += static_cast<int>(_velocityDir.x);
 	modeGame->_newMapChips->IsHit(*this, static_cast<int>(_velocityDir.x), 0);
 	_y += static_cast<int>(_velocityDir.y);
-	modeGame->_newMapChips->IsHit(*this, 0, static_cast<int>(_velocityDir.y));
+	modeGame->_newMapChips->IsHit(*this, 0, static_cast<int>(_velocityDir.y));*/
 
 	for (auto ite = g._objServer.List()->begin(); ite != g._objServer.List()->end(); ite++)
 	{

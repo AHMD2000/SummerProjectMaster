@@ -13,12 +13,13 @@ enum class RULESTATE
 	Rule_Num
 };
 
-static int NowSelect = static_cast<int>(RULESTATE::Rule_Coin);
 bool ModeRule::Initialize(Game& g)
 {
 	if (!base::Initialize(g)) { return false; }
 
 	_cgHandle = ResourceServer::GetHandles("RuleScreen");
+
+	 NowSelect = static_cast<int>(RULESTATE::Rule_Coin);
 
 	return true;
 }

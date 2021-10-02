@@ -14,7 +14,6 @@ public:
 	virtual bool Process(Game& g);
 	virtual bool Draw(Game& g);
 
-
 protected:
 
 	/*int     _cgRuleScreen;
@@ -22,6 +21,7 @@ protected:
 	int     _cgCoinatume;
 	int     _cgItemGimmick;
 	int     _cgToTitle;*/
+	int NowSelect;
 
 	int		_cgHandle = 0;
 };
