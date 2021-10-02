@@ -379,11 +379,11 @@ bool ModeUI::Draw(Game& g)
 	SetFontSize(64);
 	if (modeGame->getGameCnt() >= 600)
 	{
-		DrawFormatString(2 * 420 + 100, 950, GetColor(0, 0, 255), "%d", modeGame->getGameCnt() / 60);
+		DrawFormatString(2 * 420 + 90, 950, GetColor(0, 0, 255), "%d", modeGame->getGameCnt() / 60);
 	}
 	else
 	{
-		DrawFormatString(2 * 420 + 120, 950, GetColor(0, 0, 255), "%d", modeGame->getGameCnt() / 60);
+		DrawFormatString(2 * 420 + 105, 950, GetColor(0, 0, 255), "%d", modeGame->getGameCnt() / 60);
 	}
 	
 	SetFontSize(20);

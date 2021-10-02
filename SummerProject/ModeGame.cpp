@@ -326,7 +326,7 @@ bool ModeGame::Draw(Game& g) {
 		else if (_countDownCnt == 59)
 		{
 			// SEçƒê∂
-			PlaySoundMem(g._se["CountDown"], DX_PLAYTYPE_BACK);
+			PlaySoundMem(g._se["Start"], DX_PLAYTYPE_BACK);
 		}
 		
 	}

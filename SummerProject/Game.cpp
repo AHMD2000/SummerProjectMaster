@@ -108,6 +108,7 @@ Game::Game()
 	_se["DebufGet"] = ResourceServer::LoadSoundMem("res/se/debuf.mp3");
 	_se["BananaAttack"] = ResourceServer::LoadSoundMem("res/se/BananaAttack.mp3");
 	_se["CountDown"] = ResourceServer::LoadSoundMem("res/se/CountDown.mp3");
+	_se["Start"] = ResourceServer::LoadSoundMem("res/se/Start.mp3");
 	_se["TitleMove"] = ResourceServer::LoadSoundMem("res/se/title_move.wav");
 	_se["TitleBack"] = ResourceServer::LoadSoundMem("res/se/title_back.wav");
 	_se["TitleEnter"] = ResourceServer::LoadSoundMem("res/se/title_enter.wav");
