@@ -86,6 +86,7 @@ const ResourceServer::DivGraphMap usedInGame{
   {"CountDown2",   {"res/countDown2.png",  1, 1, 640, 106}},
   {"CountDown3",   {"res/countDown3.png",  1, 1, 640, 106}},
   {"CountDownStart",   {"res/countDownGameStart.png",  1, 1, 640, 106}},
+  {"CountDownFinish",   {"res/Finish.png",  1, 1, 966, 197}},
   {"StandbyBanana0",   {"res/player_banana0.png",  1, 1, 40, 40}},
   {"StandbyBanana1",   {"res/player_banana1.png",  1, 1, 40, 40}},
   {"StandbyBanana2",   {"res/player_banana2.png",  1, 1, 40, 40}},
@@ -123,6 +124,8 @@ Game::Game()
 	_se["SpecialAttackStart"] = ResourceServer::LoadSoundMem("res/se/SpecialAttackStart.mp3");
 	_se["TwoNockBack"] = ResourceServer::LoadSoundMem("res/se/TwoNockBack.mp3");
 	_se["StarToStar"] = ResourceServer::LoadSoundMem("res/se/StarNockBack.mp3");
+	_se["FinishCountDown"] = ResourceServer::LoadSoundMem("res/se/finishCountDown.mp3");
+	_se["Finish"] = ResourceServer::LoadSoundMem("res/se/countDown_Finish.mp3");
 
 	_gFrameCount = 0;
 

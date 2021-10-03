@@ -113,6 +113,9 @@ private:
 
 	std::vector<int> _grAllCountDownHandles;// すべてのカウントダウンのグラフィックハンドル
 
+	//フィニッシュの画像
+	int _finishHandle;
+
 	//王冠
 	std::unique_ptr<Crown> _crown;
 

@@ -38,7 +38,7 @@ bool ModeGame::Initialize(Game& g)
 
 	_countDownCnt = 60 * 4;
 
-	_gameCnt = 60 * 90;
+	_gameCnt = 60 * 10;
 
 	/*_gameCnt = 60 * 10;*/
 
@@ -52,6 +52,8 @@ bool ModeGame::Initialize(Game& g)
 	_grAllCountDownHandles.emplace_back(ResourceServer::GetHandles("CountDown2"));
 	_grAllCountDownHandles.emplace_back(ResourceServer::GetHandles("CountDown3"));
 	_grAllCountDownHandles.emplace_back(ResourceServer::GetHandles("CountDownStart"));
+
+	_finishHandle = ResourceServer::GetHandles("CountDownFinish");
 
 	_isAddCoin = true;
 	/*_isAddDebuf = true;*/
@@ -368,6 +370,33 @@ bool ModeGame::Draw(Game& g) {
 			ss << "(" << _plyRanking.at(i).second << ")" << "; ";
 		}
 		DrawString(SCREEN_W / 2, SCREEN_H / 2, ss.str().c_str(), GetColor(255, 255, 255));*/
+
+		if (_gameCnt <= 59)
+		{
+			DrawRotaGraph(993, 444, 1.0, 0.0, _finishHandle, TRUE, FALSE);
+		}
+
+		if (_gameCnt == 239)
+		{
+			// SEÄ¶
+			PlaySoundMem(g._se["FinishCountDown"], DX_PLAYTYPE_BACK);
+		}
+		else if (_gameCnt == 179)
+		{
+			// SEÄ¶
+			PlaySoundMem(g._se["FinishCountDown"], DX_PLAYTYPE_BACK);
+		}
+		else if (_gameCnt == 119)
+		{
+			// SEÄ¶
+			PlaySoundMem(g._se["FinishCountDown"], DX_PLAYTYPE_BACK);
+		}
+
+		else if (_gameCnt == 59)
+		{
+			// SEÄ¶
+			PlaySoundMem(g._se["Finish"], DX_PLAYTYPE_BACK);
+		}
 	}
 
 	
