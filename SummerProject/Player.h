@@ -156,6 +156,8 @@ private:
     
 	std::unique_ptr<FlarkEffect>	_flarkefect;
 
+	std::vector<std::unique_ptr<BlurEffect>> _blurEffects;
+
 	std::vector<int>  _grSpecialEffect;
 	std::vector<int> _grDebufEffect;
 	std::vector<int>  _grStarCoinGetEffect;
