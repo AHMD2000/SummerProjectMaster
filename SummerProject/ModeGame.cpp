@@ -236,8 +236,8 @@ bool ModeGame::Process(Game& g) {
 
 			//g._serverMode->Del(this);
 
-			ModeResult* modeResult = new ModeResult();
-			g._serverMode->Add(modeResult, 3, "Result");
+			/*ModeResult* modeResult = new ModeResult();
+			g._serverMode->Add(modeResult, 3, "Result");*/
 		}
 		
 	}
@@ -292,19 +292,19 @@ bool ModeGame::Draw(Game& g) {
 		
 		if (_countDownCnt / 60 == 3)
 		{
-			DrawRotaGraph(SCREEN_W / 2, SCREEN_H / 2, 1.0, 0.0, _grAllCountDownHandles[2], TRUE, FALSE);
+			DrawRotaGraph(989, 516, 1.0, 0.0, _grAllCountDownHandles[2], TRUE, FALSE);
 		}
 		else if (_countDownCnt / 60 == 2)
 		{
-			DrawRotaGraph(SCREEN_W / 2, SCREEN_H / 2, 1.0, 0.0, _grAllCountDownHandles[1], TRUE, FALSE);
+			DrawRotaGraph(989, 516, 1.0, 0.0, _grAllCountDownHandles[1], TRUE, FALSE);
 		}
 		else if (_countDownCnt / 60 == 1)
 		{
-			DrawRotaGraph(SCREEN_W / 2, SCREEN_H / 2, 1.0, 0.0, _grAllCountDownHandles[0], TRUE, FALSE);
+			DrawRotaGraph(989, 516, 1.0, 0.0, _grAllCountDownHandles[0], TRUE, FALSE);
 		}
 		else if (_countDownCnt / 60 <= 0)
 		{
-			DrawRotaGraph(SCREEN_W / 2, SCREEN_H / 2, 1.0, 0.0, _grAllCountDownHandles[3], TRUE, FALSE);
+			DrawRotaGraph(989, 516, 1.0, 0.0, _grAllCountDownHandles[3], TRUE, FALSE);
 		}
 
 		if (_countDownCnt == 239)

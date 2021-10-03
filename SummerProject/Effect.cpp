@@ -341,10 +341,31 @@ void FlarkEffect::Update(int freamCount, Game& g)
 RushEffect::RushEffect(const Vector2& pos, int startTime)
 	:Effect{ pos, startTime, "smoke" }
 {
-
+	
 }
 
 void RushEffect::Easing(int elapsed)
 {
 
+}
+
+//フェードインエフェクト
+FadeInEffect::FadeInEffect(int startTime, int color)
+	:Effect{ {0, 0},  startTime }
+	, _color{ color }
+{
+	_lifeTime = 60 * 2;
+}
+
+void FadeInEffect::Easing(int elapsed)
+{
+	auto linear = Easing::GetMode("Linear");
+	_alpha = linear(elapsed, 0.0, 255.0, _lifeTime);
+}
+
+void FadeInEffect::Draw(Game& g)
+{
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(_alpha));
+	DrawBoxAA(0, 0, 1920, 1080, _color, TRUE);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }

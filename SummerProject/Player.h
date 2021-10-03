@@ -19,6 +19,7 @@ public:
 		BANANA,
 		NOCKBACK,
 		RUSH,
+		DIAGONALRUSH,
 	};
 
 	Player(ObjectBase::OBJECTTYPE id,Game& g);
@@ -39,6 +40,7 @@ public:
 	void	NockBackMode(Game& g);
 	void	NockBack(Game& g);
 	void	Rush(Game& g);
+	void	DiagonalRush(Game& g);
 	void	RushDamage(Game& g);
 
 	void ChangeState(STATE state);
@@ -72,6 +74,8 @@ public:
 	int SetOverCoinNum(int overcoin) {
 		return _overCoinNum = overcoin;
 	}
+
+	int GetBananaCoolTime() { return _cooltime; }
 
 	bool	_bananaAttack;
 
@@ -144,6 +148,9 @@ private:
 	bool _attackMissingSE = true;
 
 	double _specialAttackEffectAngle;
+
+	double _rushStart;
+	double _rushStop;
 
 	std::unique_ptr<StarStateEffect>	_starStatefect;
     

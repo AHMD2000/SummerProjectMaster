@@ -3,6 +3,7 @@
 #include	<DxLib.h>
 #include    <algorithm>
 #include	"ModeGame.h"
+#include	"ModeResult.h"
 
 
 bool ModeUI::Initialize(Game& g)
@@ -12,6 +13,11 @@ bool ModeUI::Initialize(Game& g)
 	ResourceServer::GetHandles("UI", _grAllHandles);
 	_grUIgaugeHandle = ResourceServer::GetHandles("UI_gauge");
 	_UILimitTime = ResourceServer::GetHandles("UI_limitTime");
+
+	_grAllBananaHandles.emplace_back(ResourceServer::GetHandles("banana0"));
+	_grAllBananaHandles.emplace_back(ResourceServer::GetHandles("banana1"));
+	_grAllBananaHandles.emplace_back(ResourceServer::GetHandles("banana2"));
+	_grAllBananaHandles.emplace_back(ResourceServer::GetHandles("banana3"));
 
 	_gaugeX = 125;
 	_gaugeY = 1010;
@@ -26,6 +32,9 @@ bool ModeUI::Initialize(Game& g)
 
 	_GameMusicPerformance = false;
 
+	_fadeCnt = 0;
+
+	_SetModeResult = true;
 
 	return false;
 }
@@ -43,23 +52,59 @@ bool ModeUI::Process(Game& g)
 
 	ModeGame* modeGame = (ModeGame*)g._serverMode->Get("Game");
 
-	if (modeGame->_stopObjProcess == true/* && _fadeOn == true*/)
+	if (modeGame->_stopObjProcess == true && _fadeOn == true)
 	{
-		auto newFadeEffect = std:: make_unique<FadeEffect>(_UIcnt, GetColor(0, 0, 0));
-		_effects.emplace_back(std::move(newFadeEffect));
+		auto newFadeInEffect = std:: make_unique<FadeInEffect>(_UIcnt, GetColor(0, 0, 0));
+		_effects.emplace_back(std::move(newFadeInEffect));
 
-		/*_fadeOn = false;*/
+		_fadeOn = false;
+	}
+
+	if (_inPlayer == true && _UIcnt >= 1)
+	{
+		for (auto ite = g._objServer.List()->begin(); ite != g._objServer.List()->end(); ite++)
+		{
+			switch ((*ite)->GetType()) {
+			case ObjectBase::OBJECTTYPE::PLAYER1:
+			{
+				auto ply = dynamic_cast<Player*>(*ite);
+				_plys.emplace_back(ply);
+				break;
+			}
+			case ObjectBase::OBJECTTYPE::PLAYER2:
+			{
+				auto ply = dynamic_cast<Player*>(*ite);
+				_plys.emplace_back(ply);
+				break;
+			}
+			case ObjectBase::OBJECTTYPE::PLAYER3:
+			{
+				auto ply = dynamic_cast<Player*>(*ite);
+				_plys.emplace_back(ply);
+				break;
+			}
+			case ObjectBase::OBJECTTYPE::PLAYER4:
+			{
+				auto ply = dynamic_cast<Player*>(*ite);
+				_plys.emplace_back(ply);
+				break;
+			}
+
+			}
+		}
+
+		_inPlayer = false;
 	}
 
 	// エフェクトを更新する
 	for (auto&& effect : _effects) {
 		effect->Update(_UIcnt, g);
 	}
-	// 死んだエフェクトを削除する
-	_effects.erase(
-		std::remove_if(_effects.begin(), _effects.end(),
-			[](auto&& eft) {return eft->isDead(); }),
-		_effects.end());
+	//// 死んだエフェクトを削除する
+	//_effects.erase(
+	//	std::remove_if(_effects.begin(), _effects.end(),
+	//		[](auto&& eft) {return eft->isDead(); }),
+	//	_effects.end());
 	
 
 	for (auto ite = g._objServer.List()->begin(); ite != g._objServer.List()->end(); ite++)
@@ -91,9 +136,7 @@ bool ModeUI::Process(Game& g)
 
 	std::sort(_plyRankingUI.begin(), _plyRankingUI.end(), std::greater<std::pair<int, ObjectBase::OBJECTTYPE>>());
 
-	_UIcnt++;
-
-	if (_UIcnt >= 2)
+	if (_UIcnt >= 1)
 	{
 		if (_plyRankingUI.at(0).first >= _finalBGMCoin || _plyRankingUI.at(1).first >= _finalBGMCoin || _plyRankingUI.at(2).first >= _finalBGMCoin || _plyRankingUI.at(3).first >= _finalBGMCoin || modeGame->getGameCnt() <= 1200 && _BGMPerformance == false)
 		{
@@ -155,6 +198,20 @@ bool ModeUI::Process(Game& g)
 
 	}
 	
+	if (modeGame->_stopObjProcess == true)
+	{
+		_fadeCnt++;
+	}
+
+	if (_fadeCnt >= 60 * 3 && _SetModeResult == true)
+	{
+		ModeResult* modeResult = new ModeResult();
+		g._serverMode->Add(modeResult, 3, "Result");
+
+		_SetModeResult = false;
+	}
+
+	_UIcnt++;
 
 	return false;
 }
@@ -330,6 +387,24 @@ bool ModeUI::Draw(Game& g)
 				DrawGraph(1080 + 420, 900, _grAllHandles[7], TRUE);
 			}
 		}
+
+		if (_plys[0]->GetBananaCoolTime() <= 0)
+		{
+			DrawRotaGraph(80, 1037, 1.0, 0.0, _grAllBananaHandles[0], TRUE, FALSE);
+		}
+		if (_plys[1]->GetBananaCoolTime() <= 0)
+		{
+			DrawRotaGraph(500, 1037, 1.0, 0.0, _grAllBananaHandles[1], TRUE, FALSE);
+		}
+		if (_plys[2]->GetBananaCoolTime() <= 0)
+		{
+			DrawRotaGraph(1160, 1037, 1.0, 0.0, _grAllBananaHandles[2], TRUE, FALSE);
+		}
+		if (_plys[3]->GetBananaCoolTime() <= 0)
+		{
+			DrawRotaGraph(1580, 1037, 1.0, 0.0, _grAllBananaHandles[3], TRUE, FALSE);
+		}
+
 	}
 
 	else

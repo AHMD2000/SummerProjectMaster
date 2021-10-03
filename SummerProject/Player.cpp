@@ -49,7 +49,7 @@ Player::Player(ObjectBase::OBJECTTYPE id,Game& g)
 	ResourceServer::GetHandles("DebufEffect", _grDebufEffect);
 	ResourceServer::GetHandles("StarCoinGetEffect", _grStarCoinGetEffect);
 
-	_easing = Easing::GetMode("OutQuint");
+	_easing = Easing::GetMode("OutCirc");
 
 	_grStandbyBanana = ResourceServer::GetHandles("StandbyBanana" + std::to_string(GetId()));
 
@@ -119,6 +119,7 @@ std::vector<std::string> playerGraph = {
 	"player_idle",
 	"player_idle",
 	"player_rush",
+	"player_idle",
 };
 
 
@@ -128,6 +129,32 @@ void Player::ChangeState(STATE state) {
 
 	_stateAttack = true;
 	_attackMissingSE = true;
+
+	if (_charaDir == 1 || _charaDir == 0)
+	{
+		_rushStart = _y;
+	}
+	else if (_charaDir == 2 || _charaDir == 3)
+	{
+		_rushStart = _x;
+	}
+	if (_charaDir == 0)
+	{
+		_rushStop = _y + 200.0;
+	}
+	else if (_charaDir == 1)
+	{
+		_rushStop = _y - 200.0;
+	}
+	else if (_charaDir == 2)
+	{
+		_rushStop = _x - 200.0;
+	}
+	else if (_charaDir == 3)
+	{
+		_rushStop = _x + 200.0;
+	}
+
 	
 
 	_hita_x = 0;
@@ -195,6 +222,9 @@ void Player::Process(Game& g)
 		break;
 	case Player::STATE::RUSH:
 		Rush(g);
+		break;
+	case Player::STATE::DIAGONALRUSH:
+		DiagonalRush(g);
 		break;
 	default:
 		break;
@@ -485,8 +515,8 @@ void Player::Process(Game& g)
 		//// ゲームモードを削除
 		//g._serverMode->Del(modeGame);
 
-		ModeResult* modeResult = new ModeResult();
-		g._serverMode->Add(modeResult, 3, "Result");
+		/*ModeResult* modeResult = new ModeResult();
+		g._serverMode->Add(modeResult, 3, "Result");*/
 
 	}
 
@@ -873,10 +903,10 @@ void Player::Draw(Game& g) {
 	}
 
 
-	if (_cooltime <= 0)
+	/*if (_cooltime <= 0)
 	{
 		DrawRotaGraph(static_cast<int>(_x), static_cast<int>(_y) - 60, 1.0, 0.0, _grStandbyBanana, TRUE, FALSE);
-	}
+	}*/
 
 	/*DrawGraph(sx, sy, _grHandle, TRUE);*/
 
@@ -1133,7 +1163,7 @@ void Player::Attack(Game& g)
 
 			}
 
-			if (IsHitAA(*(*ite)) == true && _stateAttack == true) {
+			else if (IsHitAA(*(*ite)) == true && _stateAttack == true) {
 
 				auto plynock = dynamic_cast<Player*>(*ite);
 
@@ -1520,6 +1550,9 @@ void Player::Rush(Game& g)
 
 	auto lifetime = 60 * 1;
 
+	int key = 0;
+	key = g._gKey[GetId()];
+
 	ModeGame* modeGame = (ModeGame*)g._serverMode->Get("Game");
 
 	Vector2	_nock{ 0.0,0.0 };
@@ -1535,59 +1568,122 @@ void Player::Rush(Game& g)
 		_spd = 2.0;
 	}
 	
-	/*else if (cnt <= 60 * 0.4)
+	else if (cnt <= 60 * 0.4)
 	{
 		_spd = 8.0;
     }
 	else
 	{
 		_spd = 5.0;
-	}*/
-
-	if (_charaDir == 0)
-	{
-		/*_velocityDir.y = 1.0;*/
-		auto start = _y;
-		auto stop = _y + 10.0;
-
-		_y = _easing(cnt, start, stop, lifetime);
-		modeGame->_newMapChips->IsHit(*this, 0, 1);
-	}
-	else if (_charaDir == 1)
-	{
-		/*_velocityDir.y = -1.0;*/
-		auto start = _y;
-		auto stop = _y - 10.0;
-		_y = _easing(cnt, start, stop, lifetime);
-		modeGame->_newMapChips->IsHit(*this, 0, -1);
-	}
-	else if (_charaDir == 2)
-	{
-		/*_velocityDir.x = -1.0;*/
-		auto start = _x;
-		auto stop = _x - 10.0;
-
-		_x = _easing(cnt, start, stop, lifetime);
-		modeGame->_newMapChips->IsHit(*this, -1, 0);
 	}
 
-	else if(_charaDir == 3)
-	{
-		/*_velocityDir.x = 1.0;*/
-		auto start = _x;
-		auto stop = _x + 10.0;
+	if (key & PAD_INPUT_DOWN) {
+		_velocityDir.y = 1.0;
+		//_y += _spd;
+		_charaDir = 0;
+		//g._mapChips.IsHit(*this, 0, 1);
+		/*isMove = true;*/
 
-		_x = _easing(cnt, start, stop, lifetime);
-		modeGame->_newMapChips->IsHit(*this, 1, 0);
+		if (modeGame->_newMapChips->IsHitFlark(*this, static_cast<int>(_x), static_cast<int>(_y)) != 0)
+		{
+			/*modeGame->AddFlarkEffect(_FlarkEffectPos);*/
+
+			_flarkEffect = true;
+		}
+	}
+	if (key & PAD_INPUT_UP) {
+		_velocityDir.y = -1.0;
+		//_y -= _spd;
+		_charaDir = 1;
+		//g._mapChips.IsHit(*this, 0, -1);
+		/*isMove = true;*/
+
+		if (modeGame->_newMapChips->IsHitFlark(*this, static_cast<int>(_x), static_cast<int>(_y)) != 0)
+		{
+			/*modeGame->AddFlarkEffect(_FlarkEffectPos);*/
+			/*_flarkefect->Update(_cnt, g);*/
+			/*_flarkefect->Draw(g);*/
+
+			_flarkEffect = true;
+		}
 	}
 
-	/*_velocityDir.Normalize();
-	_velocityDir *= _spd;*/
+	// キー入力を判定して、主人公を移動させる
+	if (key & PAD_INPUT_LEFT) {
+		_velocityDir.x = -1.0;
+		//_x -= _spd;
+		_charaDir = 2;
+		//g._mapChips.IsHit(*this, -1, 0);
+		/*isMove = true;*/
 
-	/*_x += static_cast<int>(_velocityDir.x);
+		if (modeGame->_newMapChips->IsHitFlark(*this, static_cast<int>(_x), static_cast<int>(_y) != 0))
+		{
+			/*modeGame->AddFlarkEffect(_FlarkEffectPos);*/
+			/*_flarkefect->Update(_cnt, g);*/
+			/*_flarkefect->Draw(g);*/
+
+			_flarkEffect = true;
+		}
+	}
+	if (key & PAD_INPUT_RIGHT) {
+		_velocityDir.x = 1.0;
+		//_x += _spd;
+		_charaDir = 3;
+		//g._mapChips.IsHit(*this, 1, 0);
+		/*isMove = true;*/
+
+		if (modeGame->_newMapChips->IsHitFlark(*this, static_cast<int>(_x), static_cast<int>(_y)) != 0)
+		{
+			/*modeGame->AddFlarkEffect(_FlarkEffectPos);*/
+			/*_flarkefect->Update(_cnt, g);*/
+			/*_flarkefect->Draw(g);*/
+
+			_flarkEffect = true;
+		}
+	}
+
+	if (modeGame->_newMapChips->IsHitFlark(*this, static_cast<int>(_x), static_cast<int>(_y)) == 0)
+	{
+		_flarkEffect = false;
+	}
+
+	//if (_charaDir == 0)
+	//{
+	//	_velocityDir.y = 1.0;
+
+	//	/*_y = _easing(cnt, _rushStart, _rushStop, lifetime);
+	//	modeGame->_newMapChips->IsHit(*this, 0, 1);*/
+	//}
+	//else if (_charaDir == 1)
+	//{
+	//	_velocityDir.y = -1.0;
+
+	//	/*_y = _easing(cnt, _rushStart, _rushStop, lifetime);
+	//	modeGame->_newMapChips->IsHit(*this, 0, -1);*/
+	//}
+	//else if (_charaDir == 2)
+	//{
+	//	_velocityDir.x = -1.0;
+	//	
+	//	/*_x = _easing(cnt, _rushStart, _rushStop, lifetime);
+	//	modeGame->_newMapChips->IsHit(*this, -1, 0);*/
+	//}
+
+	//else if(_charaDir == 3)
+	//{
+	//	_velocityDir.x = 1.0;
+
+	//	/*_x = _easing(cnt, _rushStart, _rushStop, lifetime);
+	//	modeGame->_newMapChips->IsHit(*this, 1, 0);*/
+	//}
+
+	_velocityDir.Normalize();
+	_velocityDir *= _spd;
+
+	_x += _velocityDir.x;
 	modeGame->_newMapChips->IsHit(*this, static_cast<int>(_velocityDir.x), 0);
-	_y += static_cast<int>(_velocityDir.y);
-	modeGame->_newMapChips->IsHit(*this, 0, static_cast<int>(_velocityDir.y));*/
+	_y += _velocityDir.y;
+	modeGame->_newMapChips->IsHit(*this, 0, static_cast<int>(_velocityDir.y));
 
 	for (auto ite = g._objServer.List()->begin(); ite != g._objServer.List()->end(); ite++)
 	{
@@ -1708,6 +1804,12 @@ void Player::Rush(Game& g)
 	_cooltime--;
 }
 	
+
+void Player::DiagonalRush(Game& g)
+{
+	auto cnt = _cnt - _stateCnt;
+
+}
 
 void Player::Collision(Game& g)
 {

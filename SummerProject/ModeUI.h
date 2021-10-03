@@ -5,6 +5,7 @@
 #include	"ObjectBase.h"
 #include	"Game.h"
 #include	"Effect.h"
+#include	"Player.h"
 
 class ModeUI : public ModeBase
 {
@@ -43,10 +44,22 @@ protected:
 
 	bool _BGMPerformance = false;
 
+	int _fadeCnt;
+
+	bool _SetModeResult;
+
 	std::vector<int> _grAllHandles;
+
+	//バナナ
+	std::vector<int> _grAllBananaHandles;
 
 	// エフェクトのユニークポインタの動的配列
 	std::vector<std::unique_ptr<Effect>> _effects;
+
+	// プレイヤーの動的配列
+	std::vector<Player*> _plys;
+
+	bool _inPlayer = true;
 
 
 };

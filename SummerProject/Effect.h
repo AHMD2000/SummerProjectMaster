@@ -53,6 +53,20 @@ private:
     int _color;
 };
 
+//フェード
+class FadeInEffect : public Effect
+{
+public:
+    FadeInEffect(int startTime, int color);
+    //イージング処理
+    virtual void Easing(int elapsed) override;
+    //描画
+    virtual void Draw(Game& g) override;
+private:
+    int _color;
+};
+
+
 // 爆炎
 class ExplosionEffect : public Effect
 {
