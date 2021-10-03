@@ -537,16 +537,16 @@ void Player::Process(Game& g)
 		_bananaGage = 60 * 5;
 	}
 
-	// エフェクトを描画する
-	for (auto&& effect : _blurEffects) {
-		effect->Update(modeGame->getEffectCnt(), g);
-	}
+	//// 残像エフェクトを描画する
+	//for (auto&& effect : _blurEffects) {
+	//	effect->Update(modeGame->getEffectCnt(), g);
+	//}
 
-	// 死んだエフェクトを削除する
-	_blurEffects.erase(
-		std::remove_if(_blurEffects.begin(), _blurEffects.end(),
-			[](auto&& eft) {return eft->isDead(); }),
-		_blurEffects.end());
+	//// 死んだ残像エフェクトを削除する
+	//_blurEffects.erase(
+	//	std::remove_if(_blurEffects.begin(), _blurEffects.end(),
+	//		[](auto&& eft) {return eft->isDead(); }),
+	//	_blurEffects.end());
 
 	_bananaGage++;
 
@@ -967,10 +967,10 @@ void Player::Draw(Game& g) {
 		_flarkefect->Draw(g);
 	}
 
-	// エフェクトを描画する
-	for (auto&& effect : _blurEffects) {
-		effect->Draw(g);
-	}
+	//// 残像エフェクトを描画する
+	//for (auto&& effect : _blurEffects) {
+	//	effect->Draw(g);
+	//}
 
 	/*if (_getCoin == true)
 	{
@@ -1801,8 +1801,9 @@ void Player::Rush(Game& g)
 	if (cnt % 3 == 0)
 	{
 		/*modeGame->AddBlurEffect(_velocityDirEffect, _grHandle, 0.0);*/
-		auto newEffect = std::make_unique<BlurEffect>(_velocityDirEffect, modeGame->getEffectCnt(), _grHandle, 0.0);
-		_blurEffects.emplace_back(std::move(newEffect));
+		auto newEffect = new BlurEffect(_velocityDirEffect, modeGame->getEffectCnt(), _grHandle, 0.0);
+		/*_blurEffects.emplace_back(std::move(newEffect));*/
+		g._objServer.Add(newEffect);
 	}
 	
 
