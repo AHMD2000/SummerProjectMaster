@@ -6,6 +6,7 @@
 #include "ResourceServer.h"
 #include "ModeRule.h"
 #include "ModeCredit.h"
+#include <memory>
 
 
 static int NowSelectTitle = static_cast<int>(TITLESTATE::Title_Gamestart); // 現在の選択状況
@@ -20,6 +21,10 @@ bool ModeTitle::Initialize(Game& g)
 	_cgGameStart = ResourceServer::GetHandles("GameStart");//ゲーム開始
 	_cgRule = ResourceServer::GetHandles("Rule");//ゲーム説明
 	_cgwaku = ResourceServer::GetHandles("waku");//選択枠
+
+	_a = 0;
+
+	_titleCnt = 0;
 
 	//BGM演奏開始
 	_bgm = PlayMusic("res/bgm/SUMMER_TRIANGLE.mp3", DX_PLAYTYPE_LOOP);
@@ -61,27 +66,33 @@ bool ModeTitle::Process(Game& g)
 			 //SE入力
 			PlaySoundMem(g._se["TitleMove"], DX_PLAYTYPE_BACK);
 		}
-		if (g._gTrg[0] & PAD_INPUT_B) {// Bボタンを押されたら
+		if (g._gTrg[0] & PAD_INPUT_4) {// Bボタンを押されたら
 			switch (NowSelectTitle)//選択中の状態によって処理を分岐
 			{
 				case static_cast<int>(TITLESTATE::Title_Gamestart): // スタート選択中なら
 			{
-				// このモードを削除
-				g._serverMode->Del(this);
-				// ゲームモードを追加
-				ModeGame* modegame = new ModeGame();
-				ModeUI* modeUI = new ModeUI();
+				SetTitleProcess(false);
 
-				g._serverMode->Add(modegame, 0, "Game");
-				g._serverMode->Add(modeUI, 1, "UI");
+				auto newFadeEffect = std::make_unique<FadeInEffect>(_titleCnt, GetColor(0, 0, 0));
+				_effects.emplace_back(std::move(newFadeEffect));
 
-				modegame->_stage = ModeGame::STAGE::NORMAL;
+				_fadeIn = true;
+				//// このモードを削除
+				//g._serverMode->Del(this);
+				//// ゲームモードを追加
+				//ModeGame* modegame = new ModeGame();
+				//ModeUI* modeUI = new ModeUI();
 
-				//SE入力
-				PlaySoundMem(g._se["TitleEnter"], DX_PLAYTYPE_BACK);
+				//g._serverMode->Add(modegame, 0, "Game");
+				//g._serverMode->Add(modeUI, 1, "UI");
 
-				// BGM再生終了
-				StopMusic();
+				//modegame->_stage = ModeGame::STAGE::NORMAL;
+
+				////SE入力
+				//PlaySoundMem(g._se["TitleEnter"], DX_PLAYTYPE_BACK);
+
+				//// BGM再生終了
+				//StopMusic();
 			}
 			break;
 
@@ -127,6 +138,45 @@ bool ModeTitle::Process(Game& g)
 		}
 	}
 
+	if (_fadeIn == true)
+	{
+		_fadInCnt++;
+	}
+
+	if (_fadInCnt == 60 * 2)
+	{
+		// このモードを削除
+		g._serverMode->Del(this);
+		// ゲームモードを追加
+		ModeGame* modegame = new ModeGame();
+		ModeUI* modeUI = new ModeUI();
+
+		g._serverMode->Add(modegame, 0, "Game");
+		g._serverMode->Add(modeUI, 1, "UI");
+
+		modegame->_stage = ModeGame::STAGE::NORMAL;
+
+		//SE入力
+		PlaySoundMem(g._se["TitleEnter"], DX_PLAYTYPE_BACK);
+
+		// BGM再生終了
+		StopMusic();
+	}
+
+	// エフェクトを更新する
+	for (auto&& effect : _effects) {
+		effect->Update(_titleCnt, g);
+	}
+
+	_a += 10;
+
+	if (_a >= 255)
+	{
+		_a = 255;
+	}
+
+	_titleCnt++;
+
 
 	return true;
 }
@@ -134,7 +184,7 @@ bool ModeTitle::Process(Game& g)
 bool ModeTitle::Draw(Game& g)
 {
 	base::Draw(g);
-
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, _a);
 	DrawGraph(0, 0, _cgTitle, FALSE);
 
 	/*DrawGraph(360, 120, _cgTitlename, TRUE);*/
@@ -157,6 +207,13 @@ bool ModeTitle::Draw(Game& g)
 		break;
 	}
 	DrawGraph(165, _wakuY, _cgwaku, TRUE);
+
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
+	// エフェクトを描画する
+	for (auto&& effect : _effects) {
+		effect->Draw(g);
+	}
 
 	return true;
 }

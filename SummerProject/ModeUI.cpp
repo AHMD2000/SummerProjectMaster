@@ -170,10 +170,10 @@ bool ModeUI::Process(Game& g)
 
 		if (_finalBGM == true && _BGMPerformance == false)
 		{
-			// BGM再生終了
-			StopMusic();
+			//// BGM再生終了
+			//StopMusic();
 
-			modeGame->_gameBGM = PlayMusic("res/bgm/GameFinal.mp3", DX_PLAYTYPE_LOOP);
+			//modeGame->_gameBGM = PlayMusic("res/bgm/GameFinal.mp3", DX_PLAYTYPE_LOOP);
 
 			/*_finalBGM = false;*/
 
@@ -184,10 +184,10 @@ bool ModeUI::Process(Game& g)
 
 		if (_GameMusicPerformance == false && _GameMusic == true)
 		{
-			// BGM再生終了
-			StopMusic();
+			//// BGM再生終了
+			//StopMusic();
 
-			modeGame->_gameBGM = PlayMusic("res/bgm/gameMusic.mp3", DX_PLAYTYPE_LOOP);
+			//modeGame->_gameBGM = PlayMusic("res/bgm/gameMusic.mp3", DX_PLAYTYPE_LOOP);
 
 			/*_GameMusic = false;*/
 

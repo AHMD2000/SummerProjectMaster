@@ -8,9 +8,10 @@
 // プログラムは WinMain から始まります
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
+	SetOutApplicationLogValidFlag(false);
 	// 初期化 -------------------------------------------------------------------------
 	// ＤＸライブラリ初期化処理
-	SetGraphMode(SCREEN_W, SCREEN_H, SCREEN_DEPTH);	// 画面の解像度を横1280×縦720、1ドットあたり32ビットに指定する
+	SetGraphMode(SCREEN_W, SCREEN_H, SCREEN_DEPTH);	// 画面の解像度を横1920×縦1080、1ドットあたり32ビットに指定する
 	ChangeWindowMode(true);							// ウィンドウモードに指定する
 	if (DxLib_Init() == -1)
 	{	// エラーが起きたら直ちに終了
@@ -30,6 +31,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	// 1フレームループを組む ----------------------------------------------------------
 	while (ProcessMessage() == 0)		// プログラムが終了するまでループ
 	{
+
+		// ESCキーが押されてたらループから抜ける
+		if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+			break;
+		}
+
 		g->Input();		// 入力
 		g->Process();	// 計算
 		g->Draw();		// 描画

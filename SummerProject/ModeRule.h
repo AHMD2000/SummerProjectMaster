@@ -21,7 +21,7 @@ protected:
 	int     _cgCoinatume;
 	int     _cgItemGimmick;
 	int     _cgToTitle;*/
-	int NowSelect;
+	int NowSelect = 0;
 
 	int		_cgHandle = 0;
 };

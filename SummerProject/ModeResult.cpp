@@ -74,7 +74,7 @@ bool ModeResult::Process(Game& g)
 	//リザルトの王冠の更新
 	_resultCrown->Process(g);
 
-	if (g._gTrg[0] & PAD_INPUT_A)
+	if (g._gTrg[0] & PAD_INPUT_2)
 	{
 		// このモードを削除
 		g._serverMode->Del(this);

@@ -274,7 +274,13 @@ void Player::Process(Game& g)
 	//	_finalBGM = true;
 	//}
 	
-	_flarkefect = std::make_unique<FlarkEffect>(_PlyPos, modeGame->getEffectCnt(), this);
+	if (_flarkEffectIn == true)
+	{
+		_flarkefect = std::make_unique<FlarkEffect>(_PlyPos, modeGame->getEffectCnt(), this);
+
+		_flarkEffectIn = false;
+	}
+	
 
 	if (_specialModeAttackCoolTime <= 0)
 	{
@@ -289,7 +295,7 @@ void Player::Process(Game& g)
 
 	if (_specialMode == true)
 	{
-		_spd = 4.0 * 1.3;
+		_spd = 4.0 * 1.7;
 	}
 	else if(modeGame->_newMapChips->IsHitFlark(*this, static_cast<int>(_x), static_cast<int>(_y) != 0))
 	{
@@ -508,6 +514,8 @@ void Player::Process(Game& g)
 		// BGMçƒê∂èIóπ
 		StopMusic();
 
+		// SEçƒê∂
+		PlaySoundMem(g._se["Finish"], DX_PLAYTYPE_BACK);
 
 		//// UIÉÇÅ[ÉhÇçÌèú
 		//g._serverMode->Del(g._serverMode->Get("UI"));
@@ -887,7 +895,7 @@ void Player::Draw(Game& g) {
 			DrawBox(sx, sy - 10, sx + _w * _bananaGage / _bananaGageMax, sy, GetColor(255, 0, 0), TRUE);
 		}*/
 		
-		DrawString(static_cast<int>(_x) - _w / 2, static_cast<int>(_y) - _h * 2, ss.str().c_str(), GetColor(255, 255, 255));
+		/*DrawString(static_cast<int>(_x) - _w / 2, static_cast<int>(_y) - _h * 2, ss.str().c_str(), GetColor(255, 255, 255));*/
 		break;
 	case ObjectBase::OBJECTTYPE::PLAYER2:
 		ss << "_Coin2(" << _coin << ")\n";
@@ -895,21 +903,21 @@ void Player::Draw(Game& g) {
 		
 		/*DrawBox(sx, sy - 10, sx + _w, sy, GetColor(255, 255, 255), FALSE);*/
 		/*DrawBox(sx, sy - 10, sx + _w * _bananaGage / _bananaGageMax, sy, GetColor(0, 255, 0), TRUE);*/
-		DrawString(static_cast<int>(_x) - _w / 2, static_cast<int>(_y) - _h - 30, ss.str().c_str(), GetColor(255, 255, 255));
+		/*DrawString(static_cast<int>(_x) - _w / 2, static_cast<int>(_y) - _h - 30, ss.str().c_str(), GetColor(255, 255, 255));*/
 		break;
 	case ObjectBase::OBJECTTYPE::PLAYER3:
 		ss << "_Coin3(" << _coin << ")\n";
 
 		/*DrawBox(sx, sy - 10, sx + _w, sy, GetColor(255, 255, 255), FALSE);*/
 		/*DrawBox(sx, sy - 10, sx + _w * _bananaGage / _bananaGageMax, sy, GetColor(0, 255, 0), TRUE);*/
-		DrawString(static_cast<int>(_x) - _w / 2, static_cast<int>(_y) - _h - 30, ss.str().c_str(), GetColor(255, 255, 255));
+		/*DrawString(static_cast<int>(_x) - _w / 2, static_cast<int>(_y) - _h - 30, ss.str().c_str(), GetColor(255, 255, 255));*/
 		break;
 	case ObjectBase::OBJECTTYPE::PLAYER4:
 		ss << "_Coin4(" << _coin << ")\n";
 
 		/*DrawBox(sx, sy - 10, sx + _w, sy, GetColor(255, 255, 255), FALSE);*/
 		/*DrawBox(sx, sy - 10, sx + _w * _bananaGage / _bananaGageMax, sy, GetColor(0, 255, 0), TRUE);*/
-		DrawString(static_cast<int>(_x) - _w / 2, static_cast<int>(_y) - _h - 30, ss.str().c_str(), GetColor(255, 255, 255));
+		/*DrawString(static_cast<int>(_x) - _w / 2, static_cast<int>(_y) - _h - 30, ss.str().c_str(), GetColor(255, 255, 255));*/
 		break;
 	}
 
@@ -1145,6 +1153,8 @@ void Player::Attack(Game& g)
 					(*ite)->_coin = _oldCoin;
 
 					_specialAttack = false;
+
+					modeGame->AddHitEffect(_PlyEffect);
 
 
 					// SEçƒê∂
@@ -1586,7 +1596,7 @@ void Player::Rush(Game& g)
 	
 	else if (cnt <= 60 * 0.4)
 	{
-		_spd = 8.0;
+		_spd = 7.0;
     }
 	else
 	{
@@ -1701,98 +1711,98 @@ void Player::Rush(Game& g)
 	_y += _velocityDir.y;
 	modeGame->_newMapChips->IsHit(*this, 0, static_cast<int>(_velocityDir.y));
 
-	for (auto ite = g._objServer.List()->begin(); ite != g._objServer.List()->end(); ite++)
-	{
-		if ((*ite)->GetType() == _id) {
-			continue;
-		}
-		switch ((*ite)->GetType()) {
-		case ObjectBase::OBJECTTYPE::PLAYER1:
-		case ObjectBase::OBJECTTYPE::PLAYER2:
-		case ObjectBase::OBJECTTYPE::PLAYER3:
-		case ObjectBase::OBJECTTYPE::PLAYER4:
-			if (IsHit(*(*ite)) == true) {
+	//for (auto ite = g._objServer.List()->begin(); ite != g._objServer.List()->end(); ite++)
+	//{
+	//	if ((*ite)->GetType() == _id) {
+	//		continue;
+	//	}
+	//	switch ((*ite)->GetType()) {
+	//	case ObjectBase::OBJECTTYPE::PLAYER1:
+	//	case ObjectBase::OBJECTTYPE::PLAYER2:
+	//	case ObjectBase::OBJECTTYPE::PLAYER3:
+	//	case ObjectBase::OBJECTTYPE::PLAYER4:
+	//		if (IsHit(*(*ite)) == true) {
 
-				if (_rushAttackCoolTime <= 0)
-				{
+	//			if (_rushAttackCoolTime <= 0)
+	//			{
 
-					auto plynock = dynamic_cast<Player*>(*ite);
+	//				auto plynock = dynamic_cast<Player*>(*ite);
 
-					if (plynock->_specialMode == true)
-					{
-						break;
-					}
+	//				if (plynock->_specialMode == true)
+	//				{
+	//					break;
+	//				}
 
-					if (_charaDir == 1)
-					{
-						(*ite)->_charaDir = 0;
-					}
-					else if (_charaDir == 0)
-					{
-						(*ite)->_charaDir = 1;
-					}
-					else if (_charaDir == 2)
-					{
-						(*ite)->_charaDir = 3;
-					}
-					else if (_charaDir == 3)
-					{
-						(*ite)->_charaDir = 2;
-					}
+	//				if (_charaDir == 1)
+	//				{
+	//					(*ite)->_charaDir = 0;
+	//				}
+	//				else if (_charaDir == 0)
+	//				{
+	//					(*ite)->_charaDir = 1;
+	//				}
+	//				else if (_charaDir == 2)
+	//				{
+	//					(*ite)->_charaDir = 3;
+	//				}
+	//				else if (_charaDir == 3)
+	//				{
+	//					(*ite)->_charaDir = 2;
+	//				}
 
-					/*_hita_x = 0;
-					_hita_y = 0;
-					_hita_w = 0;
-					_hita_h = 0;*/
-					/*GetCoin(g);*/
-					/*(*ite)->Damage(g);*/
+	//				/*_hita_x = 0;
+	//				_hita_y = 0;
+	//				_hita_w = 0;
+	//				_hita_h = 0;*/
+	//				/*GetCoin(g);*/
+	//				/*(*ite)->Damage(g);*/
 
-					/*_stateAttack = false;*/
+	//				/*_stateAttack = false;*/
 
-					_nock.x = plynock->_x;
-					_nock.y = plynock->_y;
+	//				_nock.x = plynock->_x;
+	//				_nock.y = plynock->_y;
 
-					_nockattack.x = _x;
-					_nockattack.y = _y;
+	//				_nockattack.x = _x;
+	//				_nockattack.y = _y;
 
-					plynock->_nockBackpos = _nock - _nockattack;
+	//				plynock->_nockBackpos = _nock - _nockattack;
 
-					if (plynock->_coin <= 3)
-					{
-						plynock->SetOverCoin(true);
-						plynock->_overCoinNum = plynock->_coin;
-					}
+	//				if (plynock->_coin <= 3)
+	//				{
+	//					plynock->SetOverCoin(true);
+	//					plynock->_overCoinNum = plynock->_coin;
+	//				}
 
-					(*ite)->NockBackMode(g);
+	//				(*ite)->NockBackMode(g);
 
-					
-					(*ite)->RushDamage(g);
-					/*DamageGetCoin(g);*/
-					Collision(g);
-					(*ite)->Collision();
+	//				
+	//				(*ite)->RushDamage(g);
+	//				/*DamageGetCoin(g);*/
+	//				Collision(g);
+	//				(*ite)->Collision();
 
-					_rushAttackCoolTime = 60 * 1;
+	//				_rushAttackCoolTime = 60 * 1;
 
-					if ((*ite)->_coin <= 0)
-					{
-						break;
-					}
+	//				if ((*ite)->_coin <= 0)
+	//				{
+	//					break;
+	//				}
 
-					plynock->_fallCoin = true;
-					
-				}
+	//				plynock->_fallCoin = true;
+	//				
+	//			}
 
-				else
-				{
-					_rushAttackCoolTime--;
-				}
+	//			else
+	//			{
+	//				_rushAttackCoolTime--;
+	//			}
 
 
-				
-			}
-		}
+	//			
+	//		}
+	//	}
 
-	}
+	//}
 
 	_animeMax = 16;
 	_animeNo = (cnt / 4) % _animeMax + _charaDir * 16;

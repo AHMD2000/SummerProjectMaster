@@ -1,7 +1,8 @@
 #pragma once
 
 #include	"ModeBase.h"
-
+#include	"Effect.h"
+#include	<vector>
 
 
 
@@ -36,11 +37,22 @@ protected:
 	// タイトル
 	int		_cgTitle = 0;
 
+	int _a;
+
 	int		_waku = 0;
 	int		_cgTitlename = 0;
 	int		_cgGameStart = 0;
 	int		_cgRule = 0;
 	int		_cgwaku = 0;
+
+	int		_titleCnt = 0;
+
+	int		_fadInCnt = 0;
+
+	bool	_fadeIn = false;
+
+	// エフェクトのユニークポインタの動的配列
+	std::vector<std::unique_ptr<Effect>> _effects;
 
 	int _bgm = 0;
 };

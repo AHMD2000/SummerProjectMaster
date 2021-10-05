@@ -113,9 +113,9 @@ void Star::Draw(Game& g)
 	auto	sy = static_cast<int>(_y) - _h;
 
 	DrawGraph(sx, sy, _grHandle, TRUE);
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
-	DrawBox(static_cast<int>(_x) + _hit_x, static_cast<int>(_y) + _hit_y, static_cast<int>(_x) + _hit_x + _hit_w, static_cast<int>(_y) + _hit_y + _hit_h, GetColor(255, 0, 0), TRUE);	// ”¼“§–¾‚ÌÔ‚Å“–‚½‚è”»’è•`‰æ
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);		// •s“§–¾•`‰æw’è
+	//SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
+	//DrawBox(static_cast<int>(_x) + _hit_x, static_cast<int>(_y) + _hit_y, static_cast<int>(_x) + _hit_x + _hit_w, static_cast<int>(_y) + _hit_y + _hit_h, GetColor(255, 0, 0), TRUE);	// ”¼“§–¾‚ÌÔ‚Å“–‚½‚è”»’è•`‰æ
+	//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);		// •s“§–¾•`‰æw’è
 }
 
 void Star::Del(Game& g)

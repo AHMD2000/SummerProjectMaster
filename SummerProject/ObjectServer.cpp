@@ -1,6 +1,7 @@
 #include "DxLib.h"
 #include "ObjectServer.h"
 #include	<algorithm>
+#include	"ModeGame.h"
 
 ObjectServer::ObjectServer()
 	:_effectCnt(0)
@@ -72,6 +73,8 @@ void	ObjectServer::DelListObjects()
 // Process()を登録順に回す
 void	ObjectServer::Process(Game& g)
 {
+	ModeGame* modeGame = (ModeGame*)g._serverMode->Get("Game");
+
 	// Addリストにあるオブジェクトをリストに登録する
 	AddListObjects();
 
@@ -88,7 +91,7 @@ void	ObjectServer::Process(Game& g)
 	{
 		(*ite)->Process(g);
 
-		(*ite)->Update(_effectCnt, g);
+		(*ite)->Update(modeGame->getEffectCnt(), g);
 
 		//コインを一番最初に配置
 		/*if ((*ite)->GetType() == ObjectBase::OBJECTTYPE::COIN)

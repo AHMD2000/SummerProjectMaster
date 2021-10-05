@@ -113,6 +113,8 @@ private:
 
 	bool _overCoin = false;
 
+	bool _flarkEffectIn = true;
+
 	int _overCoinNum = 0;
 
 	int _bananaAttackHit1;

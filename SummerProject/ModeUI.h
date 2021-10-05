@@ -21,7 +21,7 @@ public:
 
 protected:
 
-	int _UIcnt;
+	int _UIcnt = 0;
 
 	int _gaugeX, _gaugeY;
 
@@ -46,7 +46,7 @@ protected:
 
 	int _fadeCnt;
 
-	bool _SetModeResult;
+	bool _SetModeResult = true;
 
 	std::vector<int> _grAllHandles;
 

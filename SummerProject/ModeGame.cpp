@@ -38,7 +38,7 @@ bool ModeGame::Initialize(Game& g)
 
 	_countDownCnt = 60 * 4;
 
-	_gameCnt = 60 * 10;
+	_gameCnt = 60 * 90;
 
 	/*_gameCnt = 60 * 10;*/
 
@@ -282,7 +282,7 @@ bool ModeGame::Draw(Game& g) {
 
 		g._objServer.Draw(g);// オブジェクトの描画
 
-		_newMapChips->Draw();
+		/*_newMapChips->Draw();*/
 
 		_crown->Draw(g);
 
@@ -350,7 +350,7 @@ bool ModeGame::Draw(Game& g) {
 
 		g._objServer.Draw(g);// オブジェクトの描画
 
-		_newMapChips->Draw();
+		/*_newMapChips->Draw();*/
 
 		_crown->Draw(g);
 		
@@ -370,6 +370,11 @@ bool ModeGame::Draw(Game& g) {
 			ss << "(" << _plyRanking.at(i).second << ")" << "; ";
 		}
 		DrawString(SCREEN_W / 2, SCREEN_H / 2, ss.str().c_str(), GetColor(255, 255, 255));*/
+
+		if (_stopObjProcess == true)
+		{
+			DrawRotaGraph(993, 444, 1.0, 0.0, _finishHandle, TRUE, FALSE);
+		}
 
 		if (_gameCnt <= 59)
 		{

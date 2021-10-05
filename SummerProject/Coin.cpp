@@ -464,9 +464,9 @@ void Coin::Draw(Game& g)
 
 		DrawRotaGraph(static_cast<int>(sx), static_cast<int>(sy), 1.0, 0.0, _grHandle, TRUE, FALSE);
 
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
-		DrawBox(static_cast<int>(_x) + _hit_x, static_cast<int>(_y) + _hit_y, static_cast<int>(_x) + _hit_x + _hit_w, static_cast<int>(_y) + _hit_y + _hit_h, GetColor(255, 0, 0), TRUE);	// ”¼“§–¾‚ÌÔ‚Å“–‚½‚è”»’è•`‰æ
-		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);		// •s“§–¾•`‰æw’è
+		//SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
+		//DrawBox(static_cast<int>(_x) + _hit_x, static_cast<int>(_y) + _hit_y, static_cast<int>(_x) + _hit_x + _hit_w, static_cast<int>(_y) + _hit_y + _hit_h, GetColor(255, 0, 0), TRUE);	// ”¼“§–¾‚ÌÔ‚Å“–‚½‚è”»’è•`‰æ
+		//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);		// •s“§–¾•`‰æw’è
 	}
 	else
 	{
@@ -475,9 +475,9 @@ void Coin::Draw(Game& g)
 
 		DrawRotaGraph(static_cast<int>(sx), static_cast<int>(sy), 1.0, 0.0, _grHandle, TRUE, FALSE);
 
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
-		DrawBox(static_cast<int>(_x) + _hit_x, static_cast<int>(_y) + _hit_y, static_cast<int>(_x) + _hit_x + _hit_w, static_cast<int>(_y) + _hit_y + _hit_h, GetColor(255, 0, 0), TRUE);	// ”¼“§–¾‚ÌÔ‚Å“–‚½‚è”»’è•`‰æ
-		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);		// •s“§–¾•`‰æw’è
+		//SetDrawBlendMode(DX_BLENDMODE_ALPHA, 128);
+		//DrawBox(static_cast<int>(_x) + _hit_x, static_cast<int>(_y) + _hit_y, static_cast<int>(_x) + _hit_x + _hit_w, static_cast<int>(_y) + _hit_y + _hit_h, GetColor(255, 0, 0), TRUE);	// ”¼“§–¾‚ÌÔ‚Å“–‚½‚è”»’è•`‰æ
+		//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);		// •s“§–¾•`‰æw’è
 	}
 	
 }
