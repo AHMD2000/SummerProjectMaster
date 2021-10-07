@@ -136,7 +136,7 @@ bool ModeUI::Process(Game& g)
 
 	std::sort(_plyRankingUI.begin(), _plyRankingUI.end(), std::greater<std::pair<int, ObjectBase::OBJECTTYPE>>());
 
-	if (_UIcnt >= 1)
+	if (_UIcnt >= 2)
 	{
 		if (_plyRankingUI.at(0).first >= _finalBGMCoin || _plyRankingUI.at(1).first >= _finalBGMCoin || _plyRankingUI.at(2).first >= _finalBGMCoin || _plyRankingUI.at(3).first >= _finalBGMCoin || modeGame->getGameCnt() <= 1200 && _BGMPerformance == false)
 		{
@@ -222,7 +222,7 @@ bool ModeUI::Draw(Game& g)
 
 	ModeGame* modeGame = (ModeGame*)g._serverMode->Get("Game");
 
-	if (_UIcnt >= 2)
+	if (_UIcnt >= 3)
 	{
 		if (_plyRankingUI.at(0).second == ObjectBase::OBJECTTYPE::PLAYER1)
 		{
@@ -417,22 +417,22 @@ bool ModeUI::Draw(Game& g)
 
 	_plyRankingUI.clear();
 
-	//if (modeGame->getGameCnt() > 60 * 60)
-	//{
-	//	DrawFormatString(60 + 4 * 420, 910, GetColor(0, 0, 255), "%d%d:%d", 0, modeGame->getGameCnt() / 3600, modeGame->getGameCnt() / 60 % 60);
-	//}
+	/*if (modeGame->getGameCnt() > 60 * 60)
+	{
+		DrawFormatString(60 + 4 * 420, 910, GetColor(0, 0, 255), "%d%d:%d", 0, modeGame->getGameCnt() / 3600, modeGame->getGameCnt() / 60 % 60);
+	}
 
-	//else if (modeGame->getGameCnt() <= 60 * 60 && modeGame->getGameCnt() > 60 * 10)
-	//{
-	//	DrawFormatString(60 + 4 * 420, 910, GetColor(0, 0, 255), "%d%d:%d", 0, modeGame->getGameCnt() / 3600, modeGame->getGameCnt() / 60);
-	//}
+	else if (modeGame->getGameCnt() <= 60 * 60 && modeGame->getGameCnt() > 60 * 10)
+	{
+		DrawFormatString(60 + 4 * 420, 910, GetColor(0, 0, 255), "%d%d:%d", 0, modeGame->getGameCnt() / 3600, modeGame->getGameCnt() / 60);
+	}
 
-	//else
-	//{
-	//	DrawFormatString(60 + 4 * 420, 910, GetColor(0, 0, 255), "%d%d:%d%d", 0, modeGame->getGameCnt() / 3600, 0 , modeGame->getGameCnt() / 60);
-	//}
+	else
+	{
+		DrawFormatString(60 + 4 * 420, 910, GetColor(0, 0, 255), "%d%d:%d%d", 0, modeGame->getGameCnt() / 3600, 0 , modeGame->getGameCnt() / 60);
+	}
 
-	//SetFontSize(20);
+	SetFontSize(20);*/
 
 #pragma warning(disable:4244)
 

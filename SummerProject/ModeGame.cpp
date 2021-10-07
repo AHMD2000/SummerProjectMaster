@@ -40,11 +40,13 @@ bool ModeGame::Initialize(Game& g)
 
 	_gameCnt = 60 * 90;
 
+	_fadeOutCnt = 60 * 3;
+
 	/*_gameCnt = 60 * 10;*/
 
 	/*_gameCnt = 60 * 1;*/
 
-	_state = STATE::COUNTDOWN;
+	_state = STATE::FADEOUT;
 
 	_circleHandle = ResourceServer::GetHandles("UI_circle");
 
@@ -127,6 +129,8 @@ bool ModeGame::Initialize(Game& g)
 		_newMapChips = new NewMapChips("res/", "stage");
 	}
 
+	AddFadeEffect(GetColor(0, 0, 0));
+
 	/*auto star = new Star(ObjectBase::OBJECTTYPE::STAR, *this);
 	star->SetPosition(0, 0);
 	g._objServer.Add(star);*/
@@ -158,10 +162,29 @@ bool ModeGame::Process(Game& g) {
 
 	if (_stopObjProcess == false)
 	{
-		if (_state == STATE::COUNTDOWN)
+		if (_state == STATE::FADEOUT)
 		{
 			// オブジェクトサーバに登録されているオブジェクトのProcess()を呼び出す
 			g._objServer.Process(g);
+
+			_crown->Process(g);
+
+			// エフェクトを更新する
+			for (auto&& effect : _effects) {
+				effect->Update(_effectCount, g);
+			}
+			// 死んだエフェクトを削除する
+			_effects.erase(
+				std::remove_if(_effects.begin(), _effects.end(),
+					[](auto&& eft) {return eft->isDead(); }),
+				_effects.end());
+		}
+		else if (_state == STATE::COUNTDOWN)
+		{
+			// オブジェクトサーバに登録されているオブジェクトのProcess()を呼び出す
+			g._objServer.Process(g);
+
+			_crown->Process(g);
 
 			// エフェクトを更新する
 			for (auto&& effect : _effects) {
@@ -173,7 +196,6 @@ bool ModeGame::Process(Game& g) {
 					[](auto&& eft) {return eft->isDead(); }),
 				_effects.end());
 
-			_crown->Process(g);
 		}
 
 		else
@@ -246,7 +268,19 @@ bool ModeGame::Process(Game& g) {
 
 	/*_mapChips.Process(g);*/
 
-	if (_state == STATE::COUNTDOWN)
+	if (_state == STATE::FADEOUT)
+	{
+		_fadeOutCnt--;
+		_effectCount++;
+
+		if (_fadeOutCnt <= 0)
+		{
+			_state = STATE::COUNTDOWN;
+		}
+		
+	}
+
+	else if (_state == STATE::COUNTDOWN)
 	{
 		_countDownCnt--;
 		_effectCount++;
@@ -269,8 +303,29 @@ bool ModeGame::Process(Game& g) {
 bool ModeGame::Draw(Game& g) {
 	base::Draw(g);
 
+	if (_state == STATE::FADEOUT)
+	{
+		_bg.Draw();	// 背景画像描画
+		 // 障害物を描画する
+		for (auto&& gimmic : _stageGimmics) {
+			gimmic->Draw(g);
+		}
 
-	if (_state == STATE::COUNTDOWN)
+		g._objServer.Draw(g);// オブジェクトの描画
+
+		_crown->Draw(g);
+
+		
+		DrawRotaGraph(989, 516, 1.0, 0.0, _grAllCountDownHandles[2], TRUE, FALSE);
+
+		// エフェクトを描画する
+		for (auto&& effect : _effects) {
+			effect->Draw(g);
+		}
+
+	}
+
+	else if (_state == STATE::COUNTDOWN)
 	{
 
 		_bg.Draw();	// 背景画像描画
@@ -292,7 +347,7 @@ bool ModeGame::Draw(Game& g) {
 		}
 
 		
-		if (_countDownCnt / 60 == 3)
+		if (_countDownCnt / 60 == 3 || _countDownCnt / 60 == 4)
 		{
 			DrawRotaGraph(989, 516, 1.0, 0.0, _grAllCountDownHandles[2], TRUE, FALSE);
 		}

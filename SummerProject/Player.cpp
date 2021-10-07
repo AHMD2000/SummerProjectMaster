@@ -600,7 +600,7 @@ void Player::Idle(Game& g)
 	}
 
 	if (keyTrg & PAD_INPUT_4) {
-		if (modeGame->getState() == ModeGame::STATE::COUNTDOWN)
+		if (modeGame->getState() == ModeGame::STATE::COUNTDOWN || modeGame->getState() == ModeGame::STATE::FADEOUT)
 		{
 			return;
 		}
@@ -626,6 +626,11 @@ void Player::Idle(Game& g)
 
 
 	if (keyTrg & PAD_INPUT_C) {
+		if (modeGame->getState() == ModeGame::STATE::FADEOUT)
+		{
+
+			return;
+		}
 		if (_cooltime < 0)
 		{
 			_bananaGage = 0;
@@ -638,6 +643,11 @@ void Player::Idle(Game& g)
 	}
 
 	if (keyTrg & PAD_INPUT_B) {
+		if (modeGame->getState() == ModeGame::STATE::FADEOUT)
+		{
+			
+			return;
+		}
 
 		if (_specialMode == false)
 		{
@@ -660,6 +670,13 @@ void Player::Move(Game& g)
 {
 
 	ModeGame* modeGame = (ModeGame*)g._serverMode->Get("Game");
+
+	if (modeGame->getState() == ModeGame::STATE::FADEOUT)
+	{
+		ChangeState(STATE::IDLE);
+
+		return;
+	}
 
 	Vector2 _FlarkEffectPos{ static_cast<double>(_x - 30.0), static_cast<double>(_y - 70.0) };
 

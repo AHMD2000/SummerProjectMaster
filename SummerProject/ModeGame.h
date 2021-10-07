@@ -19,6 +19,7 @@ class ModeGame : public ModeBase
 public:
 
 	enum class STATE {
+		FADEOUT,
 		COUNTDOWN,
 		PLAYGAME,
 	};
@@ -96,7 +97,11 @@ private:
 
 	STATE	_state;
 
-	int _effectCount; //エフェクトのカウント
+	int _effectCount = 0; //エフェクトのカウント
+
+	int _fadeOutCnt = 0;
+
+	int _a = 255;
 
 	int	_circleHandle;
 
