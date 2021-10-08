@@ -55,6 +55,12 @@ bool ModeResult::Process(Game& g)
 		_fadeOn = false;
 	}
 
+	if (_fadeIn == true)
+	{
+		auto newFadeInEffect = std::make_unique<FadeInEffect>(_resultCnt, GetColor(0, 0, 0));
+		_effects.emplace_back(std::move(newFadeInEffect));
+	}
+
 	// プレイヤーUIを更新する
 	for (auto&& plyUIs : _plyUIs) {
 		plyUIs->Process(g);
@@ -76,22 +82,30 @@ bool ModeResult::Process(Game& g)
 
 	if (g._gTrg[0] & PAD_INPUT_2)
 	{
-		// このモードを削除
-		g._serverMode->Del(this);
-
-		// ゲームモードの削除
-		g._serverMode->Del(g._serverMode->Get("Game"));
-
-		g._serverMode->Del(g._serverMode->Get("UI"));
-
-		// タイトルモードを追加
-		ModeTitle* modeTitle = new ModeTitle();
-		g._serverMode->Add(modeTitle, 0, "title");
-
-		//BGM演奏中止
-		StopMusic();
+		_fadeIn = true;
 	}
 
+	if (_fadeIn == true)
+	{
+		_fadeInCnt++;
+		if (_fadeInCnt >= 60 * 2)
+		{
+			// このモードを削除
+			g._serverMode->Del(this);
+
+			// ゲームモードの削除
+			g._serverMode->Del(g._serverMode->Get("Game"));
+
+			g._serverMode->Del(g._serverMode->Get("UI"));
+
+			// タイトルモードを追加
+			ModeTitle* modeTitle = new ModeTitle();
+			g._serverMode->Add(modeTitle, 0, "title");
+
+			//BGM演奏中止
+			StopMusic();
+		}
+	}
 
 	/*std::sort(modeGame->_plyRanking.begin(), modeGame->_plyRanking.end());*/
 

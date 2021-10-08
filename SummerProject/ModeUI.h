@@ -44,7 +44,7 @@ protected:
 
 	bool _BGMPerformance = false;
 
-	int _fadeCnt;
+	int _fadeCnt = 0;
 
 	bool _SetModeResult = true;
 

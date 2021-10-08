@@ -103,13 +103,13 @@ private:
 
 	int _a = 255;
 
-	int	_circleHandle;
+	int	_circleHandle = 0;
 
 	int _debufWaitTime;
 	int _starWaitTime;
-	int _coinWaitTime;
+	int _coinWaitTime = 0;
 	int _itemWaitTime;
-	int _cnt;
+	int _cnt = 0;
 	int _countDownCnt;
 	int _gameCnt;//ƒQ[ƒ€‚Ì§ŒÀŠÔ
 

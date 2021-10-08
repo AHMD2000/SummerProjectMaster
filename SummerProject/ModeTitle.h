@@ -37,7 +37,7 @@ protected:
 	// ƒ^ƒCƒgƒ‹
 	int		_cgTitle = 0;
 
-	int _a;
+	int _a = 0;
 
 	int		_waku = 0;
 	int		_cgTitlename = 0;

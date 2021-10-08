@@ -28,6 +28,9 @@ protected:
 
 	/*Player	_ply;*/
 
+	bool _fadeIn = false;
+	int _fadeInCnt = 0;
+
 	bool _fadeOn = true;
 
 	int		_cgResult = 0;
