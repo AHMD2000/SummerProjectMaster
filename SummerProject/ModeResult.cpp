@@ -55,10 +55,12 @@ bool ModeResult::Process(Game& g)
 		_fadeOn = false;
 	}
 
-	if (_fadeIn == true)
+	if (_fadeIn == true && _fadeInFast == true)
 	{
 		auto newFadeInEffect = std::make_unique<FadeInEffect>(_resultCnt, GetColor(0, 0, 0));
 		_effects.emplace_back(std::move(newFadeInEffect));
+
+		_fadeInFast = false;
 	}
 
 	// プレイヤーUIを更新する
