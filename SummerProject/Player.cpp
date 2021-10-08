@@ -104,10 +104,10 @@ void Player::Init()
 	_hit_y = -60;
 	_hit_w = 60;
 	_hit_h = 50;
-	_hita_x = 0;
-	_hita_y = 0;
-	_hita_w = 0;
-	_hita_h = 0;
+	_hita_x = -2000;
+	_hita_y = -2000;
+	_hita_w = -2000;
+	_hita_h = -2000;
 	_coin = 10;
 }
 
@@ -157,10 +157,10 @@ void Player::ChangeState(STATE state) {
 
 	
 
-	_hita_x = 0;
-	_hita_y = 0;
-	_hita_w = 0;
-	_hita_h = 0;
+	_hita_x = -2000;
+	_hita_y = -2000;
+	_hita_w = -2000;
+	_hita_h = -2000;
 
 	_grAllHandles.clear();
 	ResourceServer::GetHandles(playerGraph[GetState()] + std::to_string(GetId()), _grAllHandles);
@@ -1123,10 +1123,10 @@ void Player::Attack(Game& g)
 					_attackHit1 = 0;
 				}
 
-				_hita_x = 0;
-				_hita_y = 0;
-				_hita_w = 0;
-				_hita_h = 0;
+				_hita_x = -2000;
+				_hita_y = -2000;
+				_hita_w = -2000;
+				_hita_h = -2000;
 
 				if (_charaDir == 1)
 				{
@@ -1210,10 +1210,10 @@ void Player::Attack(Game& g)
 
 				auto plynock = dynamic_cast<Player*>(*ite);
 
-				_hita_x = 0;
-				_hita_y = 0;
-				_hita_w = 0;
-				_hita_h = 0;
+				_hita_x = -2000;
+				_hita_y = -2000;
+				_hita_w = -2000;
+				_hita_h = -2000;
 				/*GetCoin(g);*/
 				/*(*ite)->Damage(g);*/
 
@@ -1242,10 +1242,10 @@ void Player::Attack(Game& g)
 
 			if (cnt > 60 * 0.4 && (_cnt - (_stateCnt + 60 * 0.4)) < 60 * 0.4)
 			{
-				_hita_x = 0;
-				_hita_y = 0;
-				_hita_w = 0;
-				_hita_h = 0;
+				_hita_x = -2000;
+				_hita_y = -2000;
+				_hita_w = -2000;
+				_hita_h = -2000;
 
 				_stateAttack = false;
 			}
