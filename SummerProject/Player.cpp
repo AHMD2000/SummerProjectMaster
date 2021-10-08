@@ -1111,6 +1111,9 @@ void Player::Attack(Game& g)
 
 				if (plynock->_specialMode == true)
 				{
+					//SE“ü—Í
+					PlaySoundMem(g._se["StarAttackDebuf"], DX_PLAYTYPE_BACK);
+
 					break;
 				}
 
