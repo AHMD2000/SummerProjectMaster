@@ -12,7 +12,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	// 初期化 -------------------------------------------------------------------------
 	// ＤＸライブラリ初期化処理
 	SetGraphMode(SCREEN_W, SCREEN_H, SCREEN_DEPTH);	// 画面の解像度を横1920×縦1080、1ドットあたり32ビットに指定する
-	ChangeWindowMode(true);							// ウィンドウモードに指定する
+	ChangeWindowMode(false);							// ウィンドウモードに指定する
 	if (DxLib_Init() == -1)
 	{	// エラーが起きたら直ちに終了
 		return -1;
