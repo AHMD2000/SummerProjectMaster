@@ -40,7 +40,7 @@ bool ModeGame::Initialize(Game& g)
 
 	_gameCnt = 60 * 90;
 
-	_fadeOutCnt = 60 * 3;
+	_fadeOutCnt = 60 * 1;
 
 	/*_gameCnt = 60 * 10;*/
 

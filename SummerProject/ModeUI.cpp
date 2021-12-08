@@ -203,7 +203,7 @@ bool ModeUI::Process(Game& g)
 		_fadeCnt++;
 	}
 
-	if (_fadeCnt >= 60 * 2 && _SetModeResult == true)
+	if (_fadeCnt >= 60 * 1 && _SetModeResult == true)
 	{
 		ModeResult* modeResult = new ModeResult();
 		g._serverMode->Add(modeResult, 3, "Result");

@@ -66,7 +66,7 @@ FadeEffect::FadeEffect(int startTime, int color)
 	:Effect{ {0, 0},  startTime }
 	, _color{ color }
 {
-	_lifeTime = 60 * 3;
+	_lifeTime = 60 * 1;
 }
 // (4-3)イージング処理
 void FadeEffect::Easing(int elapsed) {
@@ -354,7 +354,7 @@ FadeInEffect::FadeInEffect(int startTime, int color)
 	:Effect{ {0, 0},  startTime }
 	, _color{ color }
 {
-	_lifeTime = 60 * 2;
+	_lifeTime = 60 * 1;
 }
 
 void FadeInEffect::Easing(int elapsed)

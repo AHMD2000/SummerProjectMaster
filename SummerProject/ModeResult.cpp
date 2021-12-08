@@ -90,7 +90,7 @@ bool ModeResult::Process(Game& g)
 	if (_fadeIn == true)
 	{
 		_fadeInCnt++;
-		if (_fadeInCnt >= 60 * 2)
+		if (_fadeInCnt >= 60 * 1)
 		{
 			// ‚±‚Ìƒ‚[ƒh‚ðíœ
 			g._serverMode->Del(this);

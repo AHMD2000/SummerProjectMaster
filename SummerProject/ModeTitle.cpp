@@ -143,7 +143,7 @@ bool ModeTitle::Process(Game& g)
 		_fadInCnt++;
 	}
 
-	if (_fadInCnt == 60 * 2)
+	if (_fadInCnt == 60 * 1)
 	{
 		// ‚±‚Ìƒ‚[ƒh‚ðíœ
 		g._serverMode->Del(this);
